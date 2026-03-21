@@ -2,7 +2,7 @@
   <h1>VeilforgeSMP</h1>
   <p><strong>A Survival / PvP / Economy Minecraft server inspired by DonutSMP</strong></p>
   <p>IP: <code>play.veilforge.fun</code></p>
-  <p>Java Edition: <code>1.20.x – 1.21.11</code></p>
+  <p>Java Edition: <code>1.10.x – 1.21.11</code></p>
 </div>
 
 ---
@@ -16,7 +16,7 @@ The server is inspired by the fast-paced style of **DonutSMP**, while adding its
 
 - **Server Name:** VeilforgeSMP
 - **IP Address:** `play.veilforge.fun`
-- **Game Version:** `1.20.x – 1.21.11`
+- **Game Version:** `1.10.x – 1.21.11`
 - **Mode:** Survival / PvP / Economy
 
 ## World Borders
