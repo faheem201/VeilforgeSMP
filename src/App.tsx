@@ -27,11 +27,13 @@ import {
 import { motion, AnimatePresence } from 'motion/react';
 
 // --- Constants ---
-const SERVER_NAME = "VeilforgeSMP";
-const SERVER_IP = "play.veilforge.fun";
-const DISCORD_INVITE = "https://discord.gg/mb8ukyqdyA";
-const SERVER_VERSIONS = "Java 1.18.x – 1.21.11";
-const LOGO_URL = "/server-icon.png";
+const SERVER_NAME = 'VeilforgeSMP';
+const SERVER_IP = 'play.veilforge.fun';
+const DISCORD_INVITE = 'https://discord.gg/mb8ukyqdyA';
+const SERVER_VERSIONS = 'Java 1.18.x – 1.21.11';
+const LOGO_URL = '/server-icon.png';
+const YOUTUBE_WATCH_URL = 'https://www.youtube.com/watch?v=LODV5L0Htis';
+const YOUTUBE_EMBED_URL = 'https://www.youtube.com/embed/LODV5L0Htis';
 
 // --- Components ---
 
@@ -67,14 +69,13 @@ const Navbar = () => {
           <img
             src={LOGO_URL}
             alt={`${SERVER_NAME} logo`}
-            className="w-10 h-10 object-contain rounded-lg"
+            className="w-10 h-10 object-contain rounded-lg shrink-0"
           />
           <span className="text-xl font-display font-bold tracking-tighter text-white uppercase group-hover:text-brand-purple-light transition-colors">
             {SERVER_NAME}
           </span>
         </a>
 
-        {/* Desktop Nav */}
         <div className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (
             <a
@@ -95,13 +96,11 @@ const Navbar = () => {
           </a>
         </div>
 
-        {/* Mobile Toggle */}
         <button className="md:hidden text-white" onClick={() => setIsOpen(!isOpen)}>
           {isOpen ? <X /> : <Menu />}
         </button>
       </div>
 
-      {/* Mobile Menu */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -206,23 +205,23 @@ const Overview = () => {
   const features = [
     {
       icon: <Sword className="w-8 h-8 text-brand-purple-light" />,
-      title: "Survival / PvP / Economy",
-      description: "Balanced gameplay inspired by DonutSMP, focusing on competitive survival and a player-driven economy."
+      title: 'Survival / PvP / Economy',
+      description: 'Balanced gameplay inspired by DonutSMP, focusing on competitive survival and a player-driven economy.'
     },
     {
       icon: <Globe className="w-8 h-8 text-brand-purple-light" />,
-      title: "World Access",
-      description: "Explore the Overworld, Nether, and End. Each dimension offers unique challenges and resources."
+      title: 'World Access',
+      description: 'Explore the Overworld, Nether, and End. Each dimension offers unique challenges and resources.'
     },
     {
       icon: <Zap className="w-8 h-8 text-brand-purple-light" />,
-      title: "Fair Progression",
-      description: "Competitive but balanced. No pay-to-win mechanics. Skill and dedication determine your success."
+      title: 'Fair Progression',
+      description: 'Competitive but balanced. No pay-to-win mechanics. Skill and dedication determine your success.'
     },
     {
       icon: <Users className="w-8 h-8 text-brand-purple-light" />,
-      title: "Active Community",
-      description: "Regular events, consistent updates, and a thriving Discord community to keep things fresh."
+      title: 'Active Community',
+      description: 'Regular events, consistent updates, and a thriving Discord community to keep things fresh.'
     }
   ];
 
@@ -288,10 +287,10 @@ const PlayInfo = () => {
 
             <ul className="space-y-4 mb-10">
               {[
-                "Donut-Inspired Survival Economy",
-                "Fair and Balanced PvP Mechanics",
-                "Long-Term Progression System",
-                "Custom Shard & Crate Rewards"
+                'Donut-Inspired Survival Economy',
+                'Fair and Balanced PvP Mechanics',
+                'Long-Term Progression System',
+                'Custom Shard & Crate Rewards'
               ].map((item, i) => (
                 <li key={i} className="flex items-center gap-3 text-gray-300">
                   <CheckCircle2 className="text-brand-purple w-5 h-5 flex-shrink-0" />
@@ -314,37 +313,31 @@ const PlayInfo = () => {
 
           <div className="relative">
             <a
-              href="https://www.youtube.com/watch?v=LODV5L0Htis"
+              href={YOUTUBE_WATCH_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="block group"
             >
-              <div className="aspect-video bg-dark-bg rounded-3xl border border-dark-border overflow-hidden glow-purple relative hover:scale-[1.02] transition-all duration-300">
-
+              <div className="aspect-video bg-dark-bg rounded-3xl border border-dark-border overflow-hidden glow-purple relative hover:scale-[1.02] transition-all duration-300 cursor-pointer">
                 <iframe
                   className="w-full h-full pointer-events-none"
-                  src="https://www.youtube.com/embed/LODV5L0Htis"
+                  src={YOUTUBE_EMBED_URL}
                   title="VeilforgeSMP Trailer"
                   frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
                 ></iframe>
 
-                {/* Center Icon */}
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-20 h-20 bg-brand-purple rounded-full flex items-center justify-center glow-purple-strong group-hover:scale-110 transition-transform">
+                  <div className="w-20 h-20 bg-brand-purple rounded-full flex items-center justify-center glow-purple-strong group-hover:scale-110 transition-transform duration-300">
                     <Gamepad2 className="text-white w-10 h-10" />
                   </div>
                 </div>
-
               </div>
             </a>
 
-            {/* Glow effects */}
-            <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-brand-purple/20 rounded-full blur-3xl"></div>
-            <div className="absolute -top-6 -left-6 w-32 h-32 bg-brand-purple/20 rounded-full blur-3xl"></div>
-          </div>
-            <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-brand-purple/20 rounded-full blur-3xl"></div>
-            <div className="absolute -top-6 -left-6 w-32 h-32 bg-brand-purple/20 rounded-full blur-3xl"></div>
+            <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-brand-purple/20 rounded-full blur-3xl pointer-events-none"></div>
+            <div className="absolute -top-6 -left-6 w-32 h-32 bg-brand-purple/20 rounded-full blur-3xl pointer-events-none"></div>
           </div>
         </div>
       </div>
@@ -355,45 +348,49 @@ const PlayInfo = () => {
 const Ranks = () => {
   const ranks = [
     {
-      name: "Spark",
-      price: "50 BDT",
+      name: 'Spark',
+      price: '50 BDT',
       icon: <Zap className="w-10 h-10 text-yellow-400" />,
-      color: "border-yellow-400/30",
+      color: 'border-yellow-400/30',
       perks: [
-        "+1 Home",
-        "Shorter /rtp cooldown",
-        "+2 auction slots",
-        "Small shard bonus",
-        "Rank tag (Game & Discord)",
-        "2 Common Crate Keys",
-        "Priority support"
+        '+1 Home',
+        'Shorter /rtp cooldown',
+        '+2 auction slots',
+        'Small shard bonus',
+        'Rank tag (Game & Discord)',
+        '2 Common Crate Keys',
+        'Priority support'
       ]
     },
     {
-      name: "Flare",
-      price: "120 BDT",
+      name: 'Flare',
+      price: '120 BDT',
       icon: <Flame className="w-10 h-10 text-orange-500" />,
-      color: "border-orange-500/30",
+      color: 'border-orange-500/30',
       perks: [
-        "+3 homes total",
-        "/anvil access",
-        "Better /rtp cooldown",
-        "+5 auction slots total",
-        "Medium shard bonus",
-        "1 shard per minute everywhere",
-        "Rank tag (Game & Discord)",
-        "1 Gold Crate Key",
-        "Priority support"
+        '+3 homes total',
+        '/anvil access',
+        'Better /rtp cooldown',
+        '+5 auction slots total',
+        'Medium shard bonus',
+        '1 shard per minute everywhere',
+        'Rank tag (Game & Discord)',
+        '1 Gold Crate Key',
+        'Priority support'
       ]
     },
     {
-      name: "Inferno",
-      price: "200 BDT",
-      hidePrice: true,
+      name: 'Inferno',
+      price: 'Coming Soon',
+      hidePrice: false,
       icon: <Skull className="w-10 h-10 text-red-500" />,
-      color: "border-red-500/30",
+      color: 'border-red-500/30',
       comingSoon: true,
-      perks: ["1 shard per minute everywhere"]
+      teaser: [
+        'A darker tier is being forged.',
+        'Bigger perks, stronger identity, and premium access are on the way.',
+        'Be ready when Inferno finally unlocks.'
+      ]
     }
   ];
 
@@ -415,16 +412,10 @@ const Ranks = () => {
               transition={{ delay: i * 0.1 }}
               className={`bg-dark-card border ${rank.color} p-8 rounded-3xl flex flex-col h-full relative overflow-hidden group hover:glow-purple transition-all`}
             >
-              {i === 2 && (
-                <div className="absolute top-4 right-4 bg-red-500 text-white text-[10px] font-bold uppercase tracking-tighter px-2 py-1 rounded">
-                  Most Popular
-                </div>
-              )}
-
               <div className="mb-8 flex items-center justify-between">
                 <div>
                   <h3 className="text-2xl font-bold mb-1">{rank.name}</h3>
-                  <div className="text-brand-purple-light font-bold text-xl">{rank.hidePrice ? '???' : rank.price}</div>
+                  <div className="text-brand-purple-light font-bold text-xl">{rank.price}</div>
                 </div>
                 <div className="p-3 bg-white/5 rounded-2xl">
                   {rank.icon}
@@ -433,14 +424,19 @@ const Ranks = () => {
 
               <div className="flex-grow">
                 {rank.comingSoon ? (
-                  <div className="h-full flex flex-col items-center justify-center text-center py-10 px-4 bg-brand-purple/5 rounded-2xl border border-dashed border-brand-purple/20 mb-10">
-                    <Zap className="w-12 h-12 text-brand-purple mb-4 animate-pulse" />
-                    <h4 className="text-xl font-bold text-white mb-2 uppercase tracking-tighter">Something Epic is Coming</h4>
-                    <p className="text-gray-400 text-sm">Stay tuned for the ultimate rank launch. It's going to be legendary.</p>
+                  <div className="h-full flex flex-col justify-center py-6 px-4 bg-brand-purple/5 rounded-2xl border border-dashed border-brand-purple/20 mb-10">
+                    <ul className="space-y-4">
+                      {rank.teaser?.map((line, index) => (
+                        <li key={index} className="flex items-start gap-3 text-sm text-gray-300">
+                          <CheckCircle2 className="w-4 h-4 text-brand-purple mt-0.5 flex-shrink-0" />
+                          {line}
+                        </li>
+                      ))}
+                    </ul>
                   </div>
                 ) : (
                   <ul className="space-y-4 mb-10">
-                    {rank.perks.map((perk, j) => (
+                    {rank.perks?.map((perk, j) => (
                       <li key={j} className="flex items-start gap-3 text-sm text-gray-300">
                         <CheckCircle2 className="w-4 h-4 text-brand-purple mt-0.5 flex-shrink-0" />
                         {perk}
@@ -457,7 +453,7 @@ const Ranks = () => {
                   rel="noopener noreferrer"
                   className="w-full bg-brand-purple hover:bg-brand-purple-dark text-white py-4 rounded-xl font-bold text-center block transition-all mb-6"
                 >
-                  Buy {rank.name} in Discord
+                  {rank.name === 'Inferno' ? 'Join Discord to Ask' : `Buy ${rank.name} in Discord`}
                 </a>
 
                 <div className="p-4 bg-dark-bg/50 border border-dark-border rounded-2xl">
@@ -480,110 +476,19 @@ const Ranks = () => {
 const Updates = () => {
   const latestUpdates = [
     {
-      date: "Today",
-      title: "EID EVENT ANNOUNCEMENT",
-      type: "Event",
+      date: 'Latest',
+      title: 'Patch Notes & Future Announcements',
+      type: 'Updates',
       content: (
         <div className="space-y-4">
-          <p className="text-brand-purple-light font-bold">Eid Mubarak, @Veilborn fam! 💜</p>
-          <p>We’re hosting a special Eid event today, and everyone who joins on time will receive:</p>
-          <div className="flex items-center gap-2 bg-brand-purple/20 p-3 rounded-xl border border-brand-purple/30">
-            <Coins className="text-brand-purple w-5 h-5" />
-            <span className="text-white font-bold">500 SHARDS</span>
-          </div>
-          <div className="grid grid-cols-2 gap-4">
-            <div className="bg-dark-card p-3 rounded-xl border border-dark-border">
-              <div className="text-[10px] text-gray-500 uppercase">Event Time</div>
-              <div className="text-white font-bold">4:00 PM</div>
-            </div>
-            <div className="bg-dark-card p-3 rounded-xl border border-dark-border">
-              <div className="text-[10px] text-gray-500 uppercase">Grace Time</div>
-              <div className="text-white font-bold">4:10 PM Max</div>
-            </div>
-          </div>
-        </div>
-      )
-    },
-    {
-      date: "March 16, 2026",
-      title: "Wadiyan Foreign Legion (WFL)",
-      type: "Community",
-      content: (
-        <div className="space-y-4">
-          <p>The Republic of Wadiya is expanding its fight against terror, and now, players from across the server can stand with us.</p>
-          <p>The Wadiyan Foreign Legion is a newly formed organization operating under Wadiyan command, created for those who wish to be on the side of Wadiya and defend its mission.</p>
-          <div>
-            <h4 className="text-white font-bold text-sm mb-2">As a Legionnaire, you can:</h4>
-            <ul className="list-disc list-inside text-gray-400 text-xs space-y-1">
-              <li>Fight alongside Wadiyan forces against terrorists</li>
-              <li>Support intelligence and strategic efforts</li>
-              <li>Receive the same benefits as a Wadiyan</li>
-              <li>Take part in exclusive missions and operations</li>
-              <li>Just play peacefully with your friends if you want</li>
-            </ul>
-          </div>
-          <div>
-            <h4 className="text-white font-bold text-sm mb-2">Who can join?</h4>
-            <ul className="list-disc list-inside text-gray-400 text-xs space-y-1">
-              <li>Anyone with a good track record (no major punishments)</li>
-              <li>Anyone interested in PvP'ing</li>
-              <li>Anyone interested in joining Wadiya</li>
-            </ul>
-          </div>
-          <p className="text-xs bg-brand-purple/10 p-2 rounded border border-brand-purple/20">
-            Interested? Contact <span className="text-brand-purple-light font-bold">@Convrse</span> or <span className="text-brand-purple-light font-bold">@Bingo</span> via DM to enlist.
-          </p>
-        </div>
-      )
-    },
-    {
-      date: "March 16, 2026",
-      title: "The Sovereign Union (TSU) Statement",
-      type: "Official",
-      content: (
-        <div className="space-y-4">
-          <p className="italic text-gray-300">NoMercy, X1, and Hunk have formally agreed to unite under one alliance: The Sovereign Union (TSU).</p>
-          <p className="text-xs">While each team retains its distinct identity and leadership, all critical decisions and external engagements will henceforth be orchestrated under the aegis of The Sovereign Union.</p>
-          <div>
-            <h4 className="text-white font-bold text-sm mb-2">Primary Objectives:</h4>
-            <ul className="list-disc list-inside text-gray-400 text-xs space-y-1">
-              <li>Ensuring mutual defense</li>
-              <li>Facilitating strategic growth</li>
-              <li>Coordinating structured expansion</li>
-              <li>Amplifying influence and authority</li>
-              <li>Neutralizing and overcoming opposing forces</li>
-            </ul>
-          </div>
-          <p className="text-[10px] uppercase tracking-widest text-gray-500 pt-2 border-t border-dark-border">Endorsed by: NoMercy, X1, Hunk</p>
-        </div>
-      )
-    },
-    {
-      date: "March 16, 2026",
-      title: "Hotfix v1.0.2",
-      type: "Patch",
-      content: (
-        <div className="space-y-4">
-          <div>
-            <h4 className="text-white font-bold text-sm mb-1">Gameplay Adjustments</h4>
-            <ul className="list-disc list-inside text-gray-400 text-xs space-y-1">
-              <li>Ender Pearl Cooldown Reduced for better mobility and PvP flow.</li>
-              <li>Wind Charge Cooldown Removed.</li>
-            </ul>
-          </div>
-          <div>
-            <h4 className="text-white font-bold text-sm mb-1">Economy Changes</h4>
-            <ul className="list-disc list-inside text-gray-400 text-xs space-y-1">
-              <li>Auction Listing Limit Increased to 10 (previously 3).</li>
-            </ul>
-          </div>
-          <div>
-            <h4 className="text-white font-bold text-sm mb-1">Bug Fixes</h4>
-            <ul className="list-disc list-inside text-gray-400 text-xs space-y-1">
-              <li>Natural Spawners Fixed.</li>
-              <li>Daily Rewards Fixed.</li>
-            </ul>
-          </div>
+          <p>This section is reserved for future update logs, server changes, and public announcements.</p>
+          <ul className="list-disc list-inside text-gray-400 text-xs space-y-1">
+            <li>Shard changes</li>
+            <li>Crate reworks</li>
+            <li>Maintenance notices</li>
+            <li>Eid events and seasonal events</li>
+            <li>Future gameplay updates</li>
+          </ul>
         </div>
       )
     }
@@ -596,7 +501,7 @@ const Updates = () => {
           <div className="lg:col-span-2">
             <div className="flex items-center justify-between mb-8">
               <div>
-                <h2 className="text-3xl font-bold mb-2">Latest Updates & News</h2>
+                <h2 className="text-3xl font-bold mb-2">Latest Updates</h2>
                 <p className="text-gray-400">Stay informed about the world of Veilforge.</p>
               </div>
               <History className="text-brand-purple w-8 h-8 opacity-50" />
@@ -605,7 +510,6 @@ const Updates = () => {
             <div className="space-y-6">
               {latestUpdates.map((update, i) => (
                 <div key={i} className="bg-dark-bg border border-dark-border p-6 rounded-2xl hover:border-brand-purple/30 transition-all relative overflow-hidden group">
-                  {update.type === 'Event' && <div className="absolute top-0 right-0 bg-brand-purple text-white text-[10px] font-bold px-3 py-1 rounded-bl-lg uppercase">Live Event</div>}
                   <div className="text-xs text-brand-purple-light font-bold mb-2 flex items-center gap-2">
                     {update.date}
                     <span className="w-1 h-1 bg-gray-600 rounded-full"></span>
@@ -629,7 +533,7 @@ const Updates = () => {
             <div className="bg-brand-purple/5 border border-brand-purple/20 p-8 rounded-3xl h-full sticky top-24">
               <h3 className="text-xl font-bold mb-6 flex items-center gap-3">
                 <Globe className="text-brand-purple w-6 h-6" />
-                Server Status
+                Community & Announcements
               </h3>
               <div className="space-y-6 text-sm text-gray-400 leading-relaxed">
                 <div className="space-y-4">
@@ -641,17 +545,17 @@ const Updates = () => {
                     </span>
                   </div>
                   <div className="flex items-center justify-between p-3 bg-dark-bg/50 rounded-xl border border-dark-border">
-                    <span className="text-gray-400">Current Event</span>
-                    <span className="text-brand-purple-light font-bold">Eid Celebration</span>
+                    <span className="text-gray-400">Events</span>
+                    <span className="text-brand-purple-light font-bold">Active & Growing</span>
                   </div>
                   <div className="flex items-center justify-between p-3 bg-dark-bg/50 rounded-xl border border-dark-border">
-                    <span className="text-gray-400">Active Alliance</span>
-                    <span className="text-white font-bold">TSU and WFL</span>
+                    <span className="text-gray-400">Announcements</span>
+                    <span className="text-white font-bold">Discord First</span>
                   </div>
                 </div>
 
                 <p className="pt-4">
-                  VeilforgeSMP is currently in its prime. Join the Discord to participate in the Eid event and claim your 500 shards!
+                  Join the Discord to stay updated on events, maintenance, economy changes, supporter ranks, and future server content.
                 </p>
 
                 <div className="pt-6 border-t border-brand-purple/10">
@@ -675,23 +579,11 @@ const Updates = () => {
 
 const Rules = () => {
   const rules = [
-    "No cheating, xray, or unfair mods.",
-    "No exploiting bugs, dupes, or unintended mechanics.",
-    "Respect staff and other players.",
-    "No toxic behavior, hate speech, or excessive harassment.",
-    "No lag machines or intentional server disruption.",
-    "No advertising other servers or services.",
-    "No real-money trading (RMT) outside the official store.",
-    "No impersonating staff members or other players.",
-    "No offensive builds, skins, or usernames.",
-    "No doxxing or sharing personal information of others.",
-    "No combat logging during PvP encounters.",
-    "No griefing protected claims or spawn areas.",
-    "No alt accounts to bypass bans or limits.",
-    "No spamming or excessive caps in chat.",
-    "No begging for items, ranks, or staff positions.",
-    "Report bugs and glitches immediately.",
-    "Use common sense and play fair."
+    'No cheating, xray, or unfair mods.',
+    'No exploiting bugs, dupes, or unintended mechanics.',
+    'Respect staff and other players.',
+    'No toxic behavior, hate speech, or excessive harassment.',
+    'Use common sense and play fair.'
   ];
 
   return (
@@ -766,7 +658,7 @@ const Footer = () => {
               <img
                 src={LOGO_URL}
                 alt={`${SERVER_NAME} logo`}
-                className="w-10 h-10 object-contain rounded-lg"
+                className="w-10 h-10 object-contain rounded-lg shrink-0"
               />
               <span className="text-2xl font-display font-bold text-white uppercase tracking-tighter group-hover:text-brand-purple-light transition-colors">
                 {SERVER_NAME}
@@ -781,7 +673,7 @@ const Footer = () => {
               <a href={DISCORD_INVITE} target="_blank" rel="noopener noreferrer" className="p-3 bg-dark-card border border-dark-border rounded-xl text-gray-400 hover:text-brand-purple-light hover:border-brand-purple/50 transition-all">
                 <Discord className="w-5 h-5" />
               </a>
-              <a href="#" className="p-3 bg-dark-card border border-dark-border rounded-xl text-gray-400 hover:text-brand-purple-light hover:border-brand-purple/50 transition-all">
+              <a href="#home" className="p-3 bg-dark-card border border-dark-border rounded-xl text-gray-400 hover:text-brand-purple-light hover:border-brand-purple/50 transition-all">
                 <Globe className="w-5 h-5" />
               </a>
             </div>
