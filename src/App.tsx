@@ -31,7 +31,7 @@ import { motion, AnimatePresence } from 'motion/react';
 const SERVER_NAME = 'VeilforgeSMP';
 const SERVER_IP = 'play.veilforge.fun';
 const DISCORD_INVITE = 'https://discord.gg/mb8ukyqdyA';
-const SERVER_VERSIONS = 'Java 1.18.x – 1.21.11';
+const SERVER_VERSIONS = 'Java 1.10.x – 1.21.11';
 const LOGO_URL = '/server-icon.png';
 const YOUTUBE_WATCH_URL = 'https://www.youtube.com/watch?v=LODV5L0Htis';
 const YOUTUBE_EMBED_URL = 'https://www.youtube.com/embed/LODV5L0Htis';
@@ -65,6 +65,26 @@ const BrandWordmark = ({ compact = false }: { compact?: boolean }) => {
         }`}
       >
         Survival • PvP • Economy
+      </span>
+    </div>
+  );
+};
+
+const RankName = ({ name }: { name: string }) => {
+  const colorMap: Record<string, string> = {
+    Spark: 'text-yellow-300',
+    Flare: 'text-orange-300',
+    Inferno: 'text-red-300',
+  };
+
+  return (
+    <div className="flex flex-col leading-tight">
+      <div className="uppercase font-black italic tracking-tight text-white text-3xl">
+        <span className="text-white">{name.slice(0, 1)}</span>
+        <span className={colorMap[name] || 'text-brand-purple-light'}>{name.slice(1)}</span>
+      </div>
+      <span className="uppercase tracking-[0.22em] text-gray-500 text-[10px]">
+        Supporter Rank
       </span>
     </div>
   );
@@ -409,21 +429,20 @@ const Ranks = () => {
       icon: <Zap className="w-6 h-6 text-yellow-300" />,
       accent: 'from-yellow-400/30 to-transparent',
       border: 'border-yellow-400/25',
-      button:
-        'bg-white/5 hover:bg-white/10 border border-white/10 text-white',
+      button: 'bg-white/5 hover:bg-white/10 border border-white/10 text-white',
       perks: [
         '+1 Home',
         'Slightly shorter /rtp cooldown',
         '+2 auction slots',
-        'Small shard bonus — first purchase 250, renew bonus 200',
-        'Rank tag — in-game and Discord',
+        'Small shard bonus',
+        'Rank tag',
         '2 Common Crate Keys',
         'Priority support',
       ],
     },
     {
       name: 'Flare',
-      price: '120 BDT',
+      price: '150 BDT',
       badge: 'Best Value',
       featured: true,
       icon: <Flame className="w-6 h-6 text-orange-300" />,
@@ -436,10 +455,10 @@ const Ranks = () => {
         '/anvil',
         'Better /rtp cooldown',
         '+5 auction slots total',
-        'Medium shard bonus — first purchase 500, renew bonus 350',
-        'Get shards everywhere — 1 shard per minute',
+        'Medium shard bonus',
+        'Get shards everywhere',
         'Priority support',
-        'Rank tag — in-game and Discord',
+        'Rank tag',
         '1 Gold Crate Key',
         'Fly in lobby',
       ],
@@ -456,8 +475,7 @@ const Ranks = () => {
       icon: <Skull className="w-6 h-6 text-red-300" />,
       accent: 'from-red-500/20 to-transparent',
       border: 'border-red-500/25',
-      button:
-        'bg-white/5 hover:bg-white/10 border border-white/10 text-white',
+      button: 'bg-white/5 hover:bg-white/10 border border-white/10 text-white',
     },
   ];
 
@@ -489,8 +507,8 @@ const Ranks = () => {
                     <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[11px] uppercase tracking-[0.18em] font-bold bg-white/5 border border-white/10 text-gray-300 mb-4">
                       {rank.badge}
                     </span>
-                    <h3 className="text-3xl font-black tracking-tight text-white">{rank.name}</h3>
-                    <div className="mt-2 flex items-end gap-2">
+                    <RankName name={rank.name} />
+                    <div className="mt-3 flex items-end gap-2">
                       <span className="text-2xl font-bold text-brand-purple-light">{rank.price}</span>
                     </div>
                   </div>
