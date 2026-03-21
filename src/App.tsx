@@ -612,7 +612,7 @@ const Updates = () => {
           </div>
 
           <div className="lg:col-span-1">
-            <div className="bg-brand-purple/5 border border-brand-purple/20 p-8 rounded-3xl h-full sticky top-24">
+            <div className="bg-brand-purple/5 border border-brand-purple/20 p-8 rounded-3xl sticky top-24 self-start">
               <h3 className="text-xl font-bold mb-6 flex items-center gap-3">
                 <Globe className="text-brand-purple w-6 h-6" />
                 Community & Announcements
