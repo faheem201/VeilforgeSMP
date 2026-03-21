@@ -23,6 +23,7 @@ import {
   Info,
   History,
   Scale,
+  Shield,
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 
@@ -38,9 +39,35 @@ const YOUTUBE_EMBED_URL = 'https://www.youtube.com/embed/LODV5L0Htis';
 // --- Helpers ---
 const scrollToSection = (id: string) => {
   const section = document.getElementById(id);
+
   if (section) {
     section.scrollIntoView({ behavior: 'smooth' });
   }
+
+  window.history.replaceState(null, '', window.location.pathname);
+};
+
+const BrandWordmark = ({ compact = false }: { compact?: boolean }) => {
+  return (
+    <div className={`flex flex-col ${compact ? 'leading-none' : 'leading-tight'}`}>
+      <div
+        className={`uppercase font-black italic tracking-tight text-white ${
+          compact ? 'text-xl' : 'text-2xl'
+        }`}
+      >
+        <span className="text-white">Veil</span>
+        <span className="text-brand-purple-light">forge</span>
+        <span className="text-white">SMP</span>
+      </div>
+      <span
+        className={`uppercase tracking-[0.24em] text-gray-500 ${
+          compact ? 'text-[9px]' : 'text-[10px]'
+        }`}
+      >
+        Survival • PvP • Economy
+      </span>
+    </div>
+  );
 };
 
 // --- Components ---
@@ -68,24 +95,30 @@ const Navbar = () => {
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? 'bg-dark-bg/80 backdrop-blur-md border-b border-dark-border py-3'
+          ? 'bg-dark-bg/85 backdrop-blur-md border-b border-dark-border py-3'
           : 'bg-transparent py-6'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-6 flex items-center justify-between gap-6">
         <button
-          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+          onClick={() => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            window.history.replaceState(null, '', window.location.pathname);
+          }}
           className="flex items-center gap-3 group"
           type="button"
         >
-          <img
-            src={LOGO_URL}
-            alt={`${SERVER_NAME} logo`}
-            className="w-10 h-10 object-contain rounded-lg shrink-0"
-          />
-          <span className="text-xl font-display font-bold tracking-tighter text-white uppercase group-hover:text-brand-purple-light transition-colors">
-            {SERVER_NAME}
-          </span>
+          <div className="relative">
+            <img
+              src={LOGO_URL}
+              alt={`${SERVER_NAME} logo`}
+              className="w-11 h-11 object-contain rounded-xl shrink-0"
+            />
+            <div className="absolute inset-0 rounded-xl shadow-[0_0_30px_rgba(139,92,246,0.35)] group-hover:shadow-[0_0_40px_rgba(139,92,246,0.55)] transition-all"></div>
+          </div>
+          <div className="group-hover:translate-x-0.5 transition-transform">
+            <BrandWordmark compact />
+          </div>
         </button>
 
         <div className="hidden md:flex items-center gap-8">
@@ -103,7 +136,7 @@ const Navbar = () => {
             href={DISCORD_INVITE}
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-brand-purple hover:bg-brand-purple-dark text-white px-5 py-2 rounded-full text-sm font-semibold transition-all flex items-center gap-2 glow-purple"
+            className="bg-brand-purple hover:bg-brand-purple-dark text-white px-5 py-2.5 rounded-full text-sm font-semibold transition-all flex items-center gap-2 shadow-[0_0_24px_rgba(139,92,246,0.28)] hover:shadow-[0_0_34px_rgba(139,92,246,0.42)]"
           >
             Join Discord
           </a>
@@ -183,7 +216,7 @@ const Hero = () => {
               href={DISCORD_INVITE}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full sm:w-auto bg-brand-purple hover:bg-brand-purple-dark text-white px-8 py-4 rounded-xl font-bold text-lg transition-all flex items-center justify-center gap-3 glow-purple-strong group"
+              className="w-full sm:w-auto bg-brand-purple hover:bg-brand-purple-dark text-white px-8 py-4 rounded-xl font-bold text-lg transition-all flex items-center justify-center gap-3 shadow-[0_0_35px_rgba(139,92,246,0.25)] hover:shadow-[0_0_45px_rgba(139,92,246,0.4)] group"
             >
               Join Discord
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -340,7 +373,7 @@ const PlayInfo = () => {
               rel="noopener noreferrer"
               className="block group"
             >
-              <div className="aspect-video bg-dark-bg rounded-3xl border border-dark-border overflow-hidden glow-purple relative hover:scale-[1.02] transition-all duration-300 cursor-pointer">
+              <div className="aspect-video bg-dark-bg rounded-3xl border border-dark-border overflow-hidden shadow-[0_0_35px_rgba(139,92,246,0.14)] relative hover:scale-[1.02] hover:shadow-[0_0_45px_rgba(139,92,246,0.24)] transition-all duration-300 cursor-pointer">
                 <iframe
                   className="w-full h-full pointer-events-none"
                   src={YOUTUBE_EMBED_URL}
@@ -351,7 +384,7 @@ const PlayInfo = () => {
                 ></iframe>
 
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-20 h-20 bg-brand-purple rounded-full flex items-center justify-center glow-purple-strong group-hover:scale-110 transition-transform duration-300">
+                  <div className="w-20 h-20 bg-brand-purple rounded-full flex items-center justify-center shadow-[0_0_34px_rgba(139,92,246,0.45)] group-hover:scale-110 transition-transform duration-300">
                     <Gamepad2 className="text-white w-10 h-10" />
                   </div>
                 </div>
@@ -372,8 +405,12 @@ const Ranks = () => {
     {
       name: 'Spark',
       price: '50 BDT',
-      icon: <Zap className="w-10 h-10 text-yellow-400" />,
-      color: 'border-yellow-400/30',
+      badge: 'Starter',
+      icon: <Zap className="w-6 h-6 text-yellow-300" />,
+      accent: 'from-yellow-400/30 to-transparent',
+      border: 'border-yellow-400/25',
+      button:
+        'bg-white/5 hover:bg-white/10 border border-white/10 text-white',
       perks: [
         '+1 Home',
         'Slightly shorter /rtp cooldown',
@@ -387,8 +424,13 @@ const Ranks = () => {
     {
       name: 'Flare',
       price: '120 BDT',
-      icon: <Flame className="w-10 h-10 text-orange-500" />,
-      color: 'border-orange-500/30',
+      badge: 'Best Value',
+      featured: true,
+      icon: <Flame className="w-6 h-6 text-orange-300" />,
+      accent: 'from-brand-purple/30 to-transparent',
+      border: 'border-brand-purple/40',
+      button:
+        'bg-brand-purple hover:bg-brand-purple-dark text-white shadow-[0_0_30px_rgba(139,92,246,0.3)]',
       perks: [
         '+3 homes total',
         '/anvil',
@@ -405,14 +447,17 @@ const Ranks = () => {
     {
       name: 'Inferno',
       price: 'Coming Soon',
-      icon: <Skull className="w-10 h-10 text-red-500" />,
-      color: 'border-red-500/30',
-      comingSoon: true,
+      badge: 'Teaser',
       teaser: [
         'A darker tier is being forged.',
         'Bigger perks, stronger identity, and premium access are on the way.',
         'Be ready when Inferno finally unlocks.',
       ],
+      icon: <Skull className="w-6 h-6 text-red-300" />,
+      accent: 'from-red-500/20 to-transparent',
+      border: 'border-red-500/25',
+      button:
+        'bg-white/5 hover:bg-white/10 border border-white/10 text-white',
     },
   ];
 
@@ -421,68 +466,80 @@ const Ranks = () => {
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-5xl mb-4">Supporter Ranks</h2>
-          <p className="text-gray-400">Support the server and unlock premium perks.</p>
+          <p className="text-gray-400">A cleaner, fair store experience built around value and identity.</p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {ranks.map((rank, i) => (
             <motion.div
               key={i}
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
+              initial={{ opacity: 0, y: 18 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
-              className={`bg-dark-card border ${rank.color} p-8 rounded-3xl flex flex-col h-full relative overflow-hidden group hover:glow-purple transition-all`}
+              transition={{ delay: i * 0.08 }}
+              className={`relative rounded-[28px] border ${rank.border} bg-dark-card overflow-hidden flex flex-col ${
+                rank.featured ? 'md:-translate-y-2 shadow-[0_0_35px_rgba(139,92,246,0.18)]' : ''
+              }`}
             >
-              <div className="mb-8 flex items-center justify-between">
-                <div>
-                  <h3 className="text-2xl font-bold mb-1">{rank.name}</h3>
-                  <div className="text-brand-purple-light font-bold text-xl">{rank.price}</div>
-                </div>
-                <div className="p-3 bg-white/5 rounded-2xl">{rank.icon}</div>
-              </div>
+              <div className={`absolute inset-x-0 top-0 h-28 bg-gradient-to-b ${rank.accent} pointer-events-none`}></div>
 
-              <div className="flex-grow">
-                {rank.comingSoon ? (
-                  <div className="h-full flex flex-col justify-center py-6 px-4 bg-brand-purple/5 rounded-2xl border border-dashed border-brand-purple/20 mb-10">
+              <div className="relative p-8 flex flex-col h-full">
+                <div className="flex items-start justify-between gap-4 mb-8">
+                  <div>
+                    <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[11px] uppercase tracking-[0.18em] font-bold bg-white/5 border border-white/10 text-gray-300 mb-4">
+                      {rank.badge}
+                    </span>
+                    <h3 className="text-3xl font-black tracking-tight text-white">{rank.name}</h3>
+                    <div className="mt-2 flex items-end gap-2">
+                      <span className="text-2xl font-bold text-brand-purple-light">{rank.price}</span>
+                    </div>
+                  </div>
+
+                  <div className="w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center">
+                    {rank.icon}
+                  </div>
+                </div>
+
+                {!rank.teaser ? (
+                  <ul className="space-y-4 mb-8 flex-grow">
+                    {rank.perks?.map((perk, j) => (
+                      <li key={j} className="flex items-start gap-3 text-sm text-gray-300">
+                        <CheckCircle2 className="w-4 h-4 text-brand-purple mt-0.5 flex-shrink-0" />
+                        <span>{perk}</span>
+                      </li>
+                    ))}
+                  </ul>
+                ) : (
+                  <div className="rounded-2xl border border-white/10 bg-black/20 p-5 mb-8 flex-grow">
                     <ul className="space-y-4">
-                      {rank.teaser?.map((line, index) => (
+                      {rank.teaser.map((line, index) => (
                         <li key={index} className="flex items-start gap-3 text-sm text-gray-300">
-                          <CheckCircle2 className="w-4 h-4 text-brand-purple mt-0.5 flex-shrink-0" />
-                          {line}
+                          <Info className="w-4 h-4 text-brand-purple-light mt-0.5 flex-shrink-0" />
+                          <span>{line}</span>
                         </li>
                       ))}
                     </ul>
                   </div>
-                ) : (
-                  <ul className="space-y-4 mb-10">
-                    {rank.perks?.map((perk, j) => (
-                      <li key={j} className="flex items-start gap-3 text-sm text-gray-300">
-                        <CheckCircle2 className="w-4 h-4 text-brand-purple mt-0.5 flex-shrink-0" />
-                        {perk}
-                      </li>
-                    ))}
-                  </ul>
                 )}
-              </div>
 
-              <div className="mt-auto">
-                <a
-                  href={DISCORD_INVITE}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full bg-brand-purple hover:bg-brand-purple-dark text-white py-4 rounded-xl font-bold text-center block transition-all mb-6"
-                >
-                  {rank.name === 'Inferno' ? 'Join Discord to Ask' : `Buy ${rank.name} in Discord`}
-                </a>
+                <div className="mt-auto">
+                  <a
+                    href={DISCORD_INVITE}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`w-full rounded-2xl py-4 text-center font-bold transition-all block ${rank.button}`}
+                  >
+                    {rank.name === 'Inferno' ? 'Join Discord to Ask' : `Buy ${rank.name} in Discord`}
+                  </a>
 
-                <div className="p-4 bg-dark-bg/50 border border-dark-border rounded-2xl">
-                  <h4 className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-2 flex items-center gap-2">
-                    <Info className="w-3 h-3" /> How to buy this rank
-                  </h4>
-                  <p className="text-[11px] text-gray-500 leading-relaxed">
-                    Click the button, join our Discord server, create a ticket, and tell staff which rank you want to buy.
-                  </p>
+                  <div className="mt-4 p-4 rounded-2xl border border-white/10 bg-black/20">
+                    <h4 className="text-[11px] font-bold text-gray-400 uppercase tracking-[0.2em] mb-2 flex items-center gap-2">
+                      <Info className="w-3 h-3" /> How to buy this rank
+                    </h4>
+                    <p className="text-[12px] text-gray-500 leading-relaxed">
+                      Click the button, join our Discord server, create a ticket, and tell staff which rank you want to buy.
+                    </p>
+                  </div>
                 </div>
               </div>
             </motion.div>
@@ -521,9 +578,6 @@ const Updates = () => {
               <li>Daily Rewards Fixed.</li>
             </ul>
           </div>
-          <p className="text-xs text-gray-400 pt-2 border-t border-dark-border">
-            Thank you for playing VeilforgeSMP and supporting the server. More improvements and updates will continue to roll out as we refine the experience.
-          </p>
         </div>
       ),
     },
@@ -548,9 +602,6 @@ const Updates = () => {
               <li>Each vote now rewards you with 1 Common Crate Key and Shards.</li>
             </ul>
           </div>
-          <p className="text-xs text-gray-400 pt-2 border-t border-dark-border">
-            Thank you for your patience and support. See you in game. <span className="text-brand-purple-light font-semibold">@Veilborn</span>
-          </p>
         </div>
       ),
     },
@@ -612,14 +663,14 @@ const Updates = () => {
           </div>
 
           <div className="lg:col-span-1">
-            <div className="bg-brand-purple/5 border border-brand-purple/20 p-8 rounded-3xl sticky top-24 self-start">
+            <div className="bg-brand-purple/5 border border-brand-purple/20 p-6 rounded-3xl sticky top-24 self-start">
               <h3 className="text-xl font-bold mb-6 flex items-center gap-3">
                 <Globe className="text-brand-purple w-6 h-6" />
                 Community & Announcements
               </h3>
 
-              <div className="space-y-6 text-sm text-gray-400 leading-relaxed">
-                <div className="space-y-4">
+              <div className="space-y-5 text-sm text-gray-400 leading-relaxed">
+                <div className="space-y-3">
                   <div className="flex items-center justify-between p-3 bg-dark-bg/50 rounded-xl border border-dark-border">
                     <span className="text-gray-400">Network Status</span>
                     <span className="text-green-500 font-bold flex items-center gap-2">
@@ -641,12 +692,12 @@ const Updates = () => {
                   Join the Discord to stay updated on events, maintenance, ranks, tickets, economy changes, and future server content.
                 </p>
 
-                <div className="pt-6 border-t border-brand-purple/10">
+                <div className="pt-5 border-t border-brand-purple/10">
                   <a
                     href={DISCORD_INVITE}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-brand-purple-light font-bold flex items-center gap-2 hover:gap-3 transition-all"
+                    className="inline-flex items-center gap-2 text-brand-purple-light font-bold hover:gap-3 transition-all"
                   >
                     Follow on Discord <ChevronRight className="w-4 h-4" />
                   </a>
@@ -662,15 +713,51 @@ const Updates = () => {
 
 const Rules = () => {
   const rules = [
-    'No cheating, xray, or unfair mods.',
-    'No exploiting bugs, dupes, or unintended mechanics.',
-    'Respect staff and other players.',
-    'No toxic behavior, hate speech, or excessive harassment.',
-    'Use common sense and play fair.',
-    'No combat logging during PvP encounters.',
-    'No griefing protected claims or spawn areas.',
-    'No alt accounts to bypass bans or limits.',
-    'No advertising other servers or services.',
+    {
+      text: 'No cheating, xray, or unfair mods.',
+      icon: <Shield className="text-brand-purple w-5 h-5" />,
+      bg: 'bg-brand-purple/10',
+    },
+    {
+      text: 'No exploiting bugs, dupes, or unintended mechanics.',
+      icon: <Zap className="text-yellow-300 w-5 h-5" />,
+      bg: 'bg-yellow-400/10',
+    },
+    {
+      text: 'Respect staff and other players.',
+      icon: <Users className="text-blue-300 w-5 h-5" />,
+      bg: 'bg-blue-400/10',
+    },
+    {
+      text: 'No toxic behavior, hate speech, or excessive harassment.',
+      icon: <Skull className="text-red-300 w-5 h-5" />,
+      bg: 'bg-red-500/10',
+    },
+    {
+      text: 'Use common sense and play fair.',
+      icon: <Scale className="text-emerald-300 w-5 h-5" />,
+      bg: 'bg-emerald-500/10',
+    },
+    {
+      text: 'No combat logging during PvP encounters.',
+      icon: <Sword className="text-orange-300 w-5 h-5" />,
+      bg: 'bg-orange-500/10',
+    },
+    {
+      text: 'No griefing protected claims or spawn areas.',
+      icon: <Globe className="text-cyan-300 w-5 h-5" />,
+      bg: 'bg-cyan-500/10',
+    },
+    {
+      text: 'No alt accounts to bypass bans or limits.',
+      icon: <Info className="text-pink-300 w-5 h-5" />,
+      bg: 'bg-pink-500/10',
+    },
+    {
+      text: 'No advertising other servers or services.',
+      icon: <Coins className="text-amber-300 w-5 h-5" />,
+      bg: 'bg-amber-500/10',
+    },
   ];
 
   return (
@@ -691,10 +778,10 @@ const Rules = () => {
               transition={{ delay: i * 0.06 }}
               className="bg-dark-card border border-dark-border p-6 rounded-2xl flex items-center gap-4 hover:border-brand-purple/30 transition-all"
             >
-              <div className="w-10 h-10 bg-brand-purple/10 rounded-xl flex items-center justify-center flex-shrink-0">
-                <Scale className="text-brand-purple w-5 h-5" />
+              <div className={`w-11 h-11 ${rule.bg} rounded-xl flex items-center justify-center flex-shrink-0`}>
+                {rule.icon}
               </div>
-              <p className="text-gray-300 font-medium text-sm">{rule}</p>
+              <p className="text-gray-300 font-medium text-sm">{rule.text}</p>
             </motion.div>
           ))}
         </div>
@@ -707,27 +794,42 @@ const CommunityCTA = () => {
   return (
     <section className="py-24 bg-mesh">
       <div className="max-w-5xl mx-auto px-6">
-        <div className="bg-brand-purple rounded-[40px] p-12 md:p-20 text-center relative overflow-hidden glow-purple-strong">
-          <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
-          <div className="absolute bottom-0 left-0 w-64 h-64 bg-black/20 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2"></div>
+        <div className="relative overflow-hidden rounded-[40px] border border-brand-purple/20 bg-gradient-to-br from-[#1d1530] via-[#120f1d] to-[#0b0b12] p-12 md:p-16 shadow-[0_0_50px_rgba(139,92,246,0.14)]">
+          <div className="absolute top-0 right-0 w-72 h-72 bg-brand-purple/20 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
+          <div className="absolute bottom-0 left-0 w-72 h-72 bg-fuchsia-500/10 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2"></div>
 
-          <div className="relative z-10">
+          <div className="relative z-10 text-center">
+            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-brand-purple-light text-xs font-bold uppercase tracking-[0.2em] mb-6">
+              Main Community Hub
+            </span>
+
             <h2 className="text-4xl md:text-6xl font-display font-extrabold text-white mb-6">
-              Join the Community
+              Join the Veilforge Network
             </h2>
-            <p className="text-white/80 text-lg md:text-xl mb-10 max-w-2xl mx-auto leading-relaxed">
-              Stay updated, create tickets, buy ranks, and take part in exclusive events.
-              Our Discord is the heart of VeilforgeSMP.
+            <p className="text-white/75 text-lg md:text-xl mb-10 max-w-2xl mx-auto leading-relaxed">
+              Get updates first, open support tickets, buy ranks, meet the community, and stay ahead of every major change.
             </p>
-            <a
-              href={DISCORD_INVITE}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-3 bg-white text-brand-purple px-10 py-5 rounded-2xl font-bold text-xl hover:scale-105 transition-all shadow-xl"
-            >
-              <Discord className="w-6 h-6" />
-              Join Discord Server
-            </a>
+
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <a
+                href={DISCORD_INVITE}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-3 min-w-[220px] bg-white text-brand-purple px-8 py-4 rounded-2xl font-bold text-lg hover:scale-[1.02] transition-all shadow-xl"
+              >
+                <Discord className="w-5 h-5" />
+                Join Discord
+              </a>
+
+              <button
+                type="button"
+                onClick={() => scrollToSection('ranks')}
+                className="inline-flex items-center justify-center gap-3 min-w-[220px] bg-white/5 border border-white/10 text-white px-8 py-4 rounded-2xl font-bold text-lg hover:bg-white/10 transition-all"
+              >
+                View Supporter Ranks
+                <ArrowRight className="w-5 h-5" />
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -743,17 +845,23 @@ const Footer = () => {
           <div className="md:col-span-2">
             <button
               type="button"
-              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+              onClick={() => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                window.history.replaceState(null, '', window.location.pathname);
+              }}
               className="flex items-center gap-3 mb-6 group w-fit"
             >
-              <img
-                src={LOGO_URL}
-                alt={`${SERVER_NAME} logo`}
-                className="w-10 h-10 object-contain rounded-lg shrink-0"
-              />
-              <span className="text-2xl font-display font-bold text-white uppercase tracking-tighter group-hover:text-brand-purple-light transition-colors">
-                {SERVER_NAME}
-              </span>
+              <div className="relative">
+                <img
+                  src={LOGO_URL}
+                  alt={`${SERVER_NAME} logo`}
+                  className="w-12 h-12 object-contain rounded-xl shrink-0"
+                />
+                <div className="absolute inset-0 rounded-xl shadow-[0_0_30px_rgba(139,92,246,0.35)] group-hover:shadow-[0_0_40px_rgba(139,92,246,0.55)] transition-all"></div>
+              </div>
+              <div className="group-hover:translate-x-0.5 transition-transform">
+                <BrandWordmark />
+              </div>
             </button>
 
             <p className="text-gray-500 max-w-sm leading-relaxed mb-6">
@@ -772,7 +880,10 @@ const Footer = () => {
               </a>
               <button
                 type="button"
-                onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                onClick={() => {
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                  window.history.replaceState(null, '', window.location.pathname);
+                }}
                 className="p-3 bg-dark-card border border-dark-border rounded-xl text-gray-400 hover:text-brand-purple-light hover:border-brand-purple/50 transition-all"
               >
                 <Globe className="w-5 h-5" />
@@ -846,6 +957,12 @@ const Footer = () => {
 };
 
 export default function App() {
+  useEffect(() => {
+    if (window.location.hash) {
+      window.history.replaceState(null, '', window.location.pathname);
+    }
+  }, []);
+
   return (
     <div className="min-h-screen selection:bg-brand-purple/30">
       <Navbar />
