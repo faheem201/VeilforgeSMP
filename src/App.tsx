@@ -312,8 +312,13 @@ const PlayInfo = () => {
             </div>
           </div>
 
-          <div className="relative">
-            <div className="aspect-video bg-dark-bg rounded-3xl border border-dark-border overflow-hidden glow-purple relative">
+          <a
+            href="https://www.youtube.com/watch?v=LODV5L0Htis"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block relative group"
+          >
+            <div className="aspect-video bg-dark-bg rounded-3xl border border-dark-border overflow-hidden glow-purple relative group hover:scale-[1.02] transition-all duration-300">
               
               <iframe
                 className="w-full h-full rounded-3xl"
@@ -329,7 +334,9 @@ const PlayInfo = () => {
                   <Gamepad2 className="text-white w-10 h-10" />
                 </div>
               </div>
+              
             </div>
+          </a>
             <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-brand-purple/20 rounded-full blur-3xl"></div>
             <div className="absolute -top-6 -left-6 w-32 h-32 bg-brand-purple/20 rounded-full blur-3xl"></div>
           </div>
