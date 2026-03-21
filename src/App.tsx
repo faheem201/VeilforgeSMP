@@ -314,12 +314,16 @@ const PlayInfo = () => {
 
           <div className="relative">
             <div className="aspect-video bg-dark-bg rounded-3xl border border-dark-border overflow-hidden glow-purple relative">
-              <img
-                src="https://picsum.photos/seed/minecraft-dark/1200/800"
-                alt="Server Preview"
-                className="w-full h-full object-cover opacity-60"
-                referrerPolicy="no-referrer"
-              />
+              
+              <iframe
+                className="w-full h-full rounded-3xl"
+                src="https://www.youtube.com/embed/LODV5L0Htis"
+                title="Oath Ceremony | VeilForgeSMP"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+            ></iframe>
+                
               <div className="absolute inset-0 flex items-center justify-center">
                 <div className="w-20 h-20 bg-brand-purple rounded-full flex items-center justify-center glow-purple-strong cursor-pointer hover:scale-110 transition-transform">
                   <Gamepad2 className="text-white w-10 h-10" />
