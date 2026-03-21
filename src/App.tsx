@@ -22,7 +22,7 @@ import {
   ArrowRight,
   Info,
   History,
-  Scale
+  Scale,
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 
@@ -34,6 +34,14 @@ const SERVER_VERSIONS = 'Java 1.18.x – 1.21.11';
 const LOGO_URL = '/server-icon.png';
 const YOUTUBE_WATCH_URL = 'https://www.youtube.com/watch?v=LODV5L0Htis';
 const YOUTUBE_EMBED_URL = 'https://www.youtube.com/embed/LODV5L0Htis';
+
+// --- Helpers ---
+const scrollToSection = (id: string) => {
+  const section = document.getElementById(id);
+  if (section) {
+    section.scrollIntoView({ behavior: 'smooth' });
+  }
+};
 
 // --- Components ---
 
@@ -48,12 +56,12 @@ const Navbar = () => {
   }, []);
 
   const navLinks = [
-    { name: 'Home', href: '#home' },
-    { name: 'Overview', href: '#overview' },
-    { name: 'Play', href: '#play' },
-    { name: 'Ranks', href: '#ranks' },
-    { name: 'Updates', href: '#updates' },
-    { name: 'Rules', href: '#rules' },
+    { name: 'Home', id: 'home' },
+    { name: 'Overview', id: 'overview' },
+    { name: 'Play', id: 'play' },
+    { name: 'Ranks', id: 'ranks' },
+    { name: 'Updates', id: 'updates' },
+    { name: 'Rules', id: 'rules' },
   ];
 
   return (
@@ -65,7 +73,11 @@ const Navbar = () => {
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
-        <a href="#home" className="flex items-center gap-3 group">
+        <button
+          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+          className="flex items-center gap-3 group"
+          type="button"
+        >
           <img
             src={LOGO_URL}
             alt={`${SERVER_NAME} logo`}
@@ -74,17 +86,18 @@ const Navbar = () => {
           <span className="text-xl font-display font-bold tracking-tighter text-white uppercase group-hover:text-brand-purple-light transition-colors">
             {SERVER_NAME}
           </span>
-        </a>
+        </button>
 
         <div className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (
-            <a
+            <button
               key={link.name}
-              href={link.href}
+              type="button"
+              onClick={() => scrollToSection(link.id)}
               className="text-sm font-medium text-gray-400 hover:text-brand-purple-light transition-colors"
             >
               {link.name}
-            </a>
+            </button>
           ))}
           <a
             href={DISCORD_INVITE}
@@ -96,7 +109,7 @@ const Navbar = () => {
           </a>
         </div>
 
-        <button className="md:hidden text-white" onClick={() => setIsOpen(!isOpen)}>
+        <button className="md:hidden text-white" onClick={() => setIsOpen(!isOpen)} type="button">
           {isOpen ? <X /> : <Menu />}
         </button>
       </div>
@@ -110,14 +123,17 @@ const Navbar = () => {
             className="absolute top-full left-0 right-0 bg-dark-bg border-b border-dark-border p-6 md:hidden flex flex-col gap-4"
           >
             {navLinks.map((link) => (
-              <a
+              <button
                 key={link.name}
-                href={link.href}
-                className="text-lg font-medium text-gray-300"
-                onClick={() => setIsOpen(false)}
+                type="button"
+                className="text-left text-lg font-medium text-gray-300"
+                onClick={() => {
+                  scrollToSection(link.id);
+                  setIsOpen(false);
+                }}
               >
                 {link.name}
-              </a>
+              </button>
             ))}
             <a
               href={DISCORD_INVITE}
@@ -137,8 +153,8 @@ const Navbar = () => {
 const Hero = () => {
   const [copied, setCopied] = useState(false);
 
-  const copyIP = () => {
-    navigator.clipboard.writeText(SERVER_IP);
+  const copyIP = async () => {
+    await navigator.clipboard.writeText(SERVER_IP);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
@@ -172,12 +188,13 @@ const Hero = () => {
               Join Discord
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </a>
-            <a
-              href="#ranks"
+            <button
+              type="button"
+              onClick={() => scrollToSection('ranks')}
               className="w-full sm:w-auto bg-white/5 hover:bg-white/10 border border-white/10 text-white px-8 py-4 rounded-xl font-bold text-lg transition-all flex items-center justify-center gap-3"
             >
               View Ranks
-            </a>
+            </button>
           </div>
 
           <div className="inline-flex items-center gap-4 p-2 pl-6 bg-dark-card border border-dark-border rounded-2xl">
@@ -185,6 +202,7 @@ const Hero = () => {
             <span className="text-white font-mono font-bold">{SERVER_IP}</span>
             <button
               onClick={copyIP}
+              type="button"
               className="p-3 bg-brand-purple/10 hover:bg-brand-purple/20 text-brand-purple-light rounded-xl transition-all relative group"
             >
               {copied ? <CheckCircle2 className="w-5 h-5" /> : <Copy className="w-5 h-5" />}
@@ -206,23 +224,27 @@ const Overview = () => {
     {
       icon: <Sword className="w-8 h-8 text-brand-purple-light" />,
       title: 'Survival / PvP / Economy',
-      description: 'Balanced gameplay inspired by DonutSMP, focusing on competitive survival and a player-driven economy.'
+      description:
+        'Balanced gameplay inspired by DonutSMP, focusing on competitive survival and a player-driven economy.',
     },
     {
       icon: <Globe className="w-8 h-8 text-brand-purple-light" />,
       title: 'World Access',
-      description: 'Explore the Overworld, Nether, and End. Each dimension offers unique challenges and resources.'
+      description:
+        'Explore the Overworld, Nether, and End. Each dimension offers unique challenges and resources.',
     },
     {
       icon: <Zap className="w-8 h-8 text-brand-purple-light" />,
       title: 'Fair Progression',
-      description: 'Competitive but balanced. No pay-to-win mechanics. Skill and dedication determine your success.'
+      description:
+        'Competitive but balanced. No pay-to-win mechanics. Skill and dedication determine your success.',
     },
     {
       icon: <Users className="w-8 h-8 text-brand-purple-light" />,
       title: 'Active Community',
-      description: 'Regular events, consistent updates, and a thriving Discord community to keep things fresh.'
-    }
+      description:
+        'Regular events, consistent updates, and a thriving Discord community to keep things fresh.',
+    },
   ];
 
   return (
@@ -282,7 +304,7 @@ const PlayInfo = () => {
             <h2 className="text-3xl md:text-5xl mb-6">Ready to Join?</h2>
             <p className="text-gray-400 text-lg mb-8 leading-relaxed">
               VeilforgeSMP is designed for players who want a serious, competitive survival experience.
-              Whether you're a builder, a warrior, or a merchant, there's a place for you in our world.
+              Whether you&apos;re a builder, a warrior, or a merchant, there&apos;s a place for you in our world.
             </p>
 
             <ul className="space-y-4 mb-10">
@@ -290,7 +312,7 @@ const PlayInfo = () => {
                 'Donut-Inspired Survival Economy',
                 'Fair and Balanced PvP Mechanics',
                 'Long-Term Progression System',
-                'Custom Shard & Crate Rewards'
+                'Custom Shard & Crate Rewards',
               ].map((item, i) => (
                 <li key={i} className="flex items-center gap-3 text-gray-300">
                   <CheckCircle2 className="text-brand-purple w-5 h-5 flex-shrink-0" />
@@ -354,13 +376,13 @@ const Ranks = () => {
       color: 'border-yellow-400/30',
       perks: [
         '+1 Home',
-        'Shorter /rtp cooldown',
+        'Slightly shorter /rtp cooldown',
         '+2 auction slots',
-        'Small shard bonus',
-        'Rank tag (Game & Discord)',
+        'Small shard bonus — first purchase 250, renew bonus 200',
+        'Rank tag — in-game and Discord',
         '2 Common Crate Keys',
-        'Priority support'
-      ]
+        'Priority support',
+      ],
     },
     {
       name: 'Flare',
@@ -369,29 +391,29 @@ const Ranks = () => {
       color: 'border-orange-500/30',
       perks: [
         '+3 homes total',
-        '/anvil access',
+        '/anvil',
         'Better /rtp cooldown',
         '+5 auction slots total',
-        'Medium shard bonus',
-        '1 shard per minute everywhere',
-        'Rank tag (Game & Discord)',
+        'Medium shard bonus — first purchase 500, renew bonus 350',
+        'Get shards everywhere — 1 shard per minute',
+        'Priority support',
+        'Rank tag — in-game and Discord',
         '1 Gold Crate Key',
-        'Priority support'
-      ]
+        'Fly in lobby',
+      ],
     },
     {
       name: 'Inferno',
       price: 'Coming Soon',
-      hidePrice: false,
       icon: <Skull className="w-10 h-10 text-red-500" />,
       color: 'border-red-500/30',
       comingSoon: true,
       teaser: [
         'A darker tier is being forged.',
         'Bigger perks, stronger identity, and premium access are on the way.',
-        'Be ready when Inferno finally unlocks.'
-      ]
-    }
+        'Be ready when Inferno finally unlocks.',
+      ],
+    },
   ];
 
   return (
@@ -417,9 +439,7 @@ const Ranks = () => {
                   <h3 className="text-2xl font-bold mb-1">{rank.name}</h3>
                   <div className="text-brand-purple-light font-bold text-xl">{rank.price}</div>
                 </div>
-                <div className="p-3 bg-white/5 rounded-2xl">
-                  {rank.icon}
-                </div>
+                <div className="p-3 bg-white/5 rounded-2xl">{rank.icon}</div>
               </div>
 
               <div className="flex-grow">
@@ -458,7 +478,7 @@ const Ranks = () => {
 
                 <div className="p-4 bg-dark-bg/50 border border-dark-border rounded-2xl">
                   <h4 className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-2 flex items-center gap-2">
-                    <Info className="w-3 h-3" /> How to buy
+                    <Info className="w-3 h-3" /> How to buy this rank
                   </h4>
                   <p className="text-[11px] text-gray-500 leading-relaxed">
                     Click the button, join our Discord server, create a ticket, and tell staff which rank you want to buy.
@@ -476,22 +496,81 @@ const Ranks = () => {
 const Updates = () => {
   const latestUpdates = [
     {
-      date: 'Latest',
-      title: 'Patch Notes & Future Announcements',
-      type: 'Updates',
+      date: '3/16/2026 7:17 AM',
+      title: 'VeilforgeSMP - Hotfix v1.0.2',
+      type: 'Patch',
       content: (
         <div className="space-y-4">
-          <p>This section is reserved for future update logs, server changes, and public announcements.</p>
+          <div>
+            <h4 className="text-white font-bold text-sm mb-2">Gameplay Adjustments</h4>
+            <ul className="list-disc list-inside text-gray-400 text-xs space-y-1">
+              <li>Ender Pearl Cooldown Reduced — improved mobility and overall PvP flow.</li>
+              <li>Wind Charge Cooldown Removed.</li>
+            </ul>
+          </div>
+          <div>
+            <h4 className="text-white font-bold text-sm mb-2">Economy Changes</h4>
+            <ul className="list-disc list-inside text-gray-400 text-xs space-y-1">
+              <li>Auction Listing Limit Increased — players can now list up to 10 auctions simultaneously (previously 3).</li>
+            </ul>
+          </div>
+          <div>
+            <h4 className="text-white font-bold text-sm mb-2">Bug Fixes</h4>
+            <ul className="list-disc list-inside text-gray-400 text-xs space-y-1">
+              <li>Natural Spawners Fixed.</li>
+              <li>Daily Rewards Fixed.</li>
+            </ul>
+          </div>
+          <p className="text-xs text-gray-400 pt-2 border-t border-dark-border">
+            Thank you for playing VeilforgeSMP and supporting the server. More improvements and updates will continue to roll out as we refine the experience.
+          </p>
+        </div>
+      ),
+    },
+    {
+      date: '3/16/2026 7:17 AM',
+      title: 'VeilforgeSMP - Hotfix v1.0.1',
+      type: 'Patch',
+      content: (
+        <div className="space-y-4">
+          <div>
+            <h4 className="text-white font-bold text-sm mb-2">New Features</h4>
+            <ul className="list-disc list-inside text-gray-400 text-xs space-y-1">
+              <li>GSit is now live. Use /sit to sit anywhere, or simply right click any stair or slab.</li>
+              <li>Hunger is now disabled at spawn.</li>
+              <li>Players can now pick up items within the spawn area.</li>
+            </ul>
+          </div>
+          <div>
+            <h4 className="text-white font-bold text-sm mb-2">Voting Rewards</h4>
+            <ul className="list-disc list-inside text-gray-400 text-xs space-y-1">
+              <li>The voting system has been fully restored.</li>
+              <li>Each vote now rewards you with 1 Common Crate Key and Shards.</li>
+            </ul>
+          </div>
+          <p className="text-xs text-gray-400 pt-2 border-t border-dark-border">
+            Thank you for your patience and support. See you in game. <span className="text-brand-purple-light font-semibold">@Veilborn</span>
+          </p>
+        </div>
+      ),
+    },
+    {
+      date: 'Future',
+      title: 'Upcoming Announcements',
+      type: 'News',
+      content: (
+        <div className="space-y-3">
+          <p>This area will continue to be used for:</p>
           <ul className="list-disc list-inside text-gray-400 text-xs space-y-1">
             <li>Shard changes</li>
             <li>Crate reworks</li>
             <li>Maintenance notices</li>
-            <li>Eid events and seasonal events</li>
-            <li>Future gameplay updates</li>
+            <li>Eid events</li>
+            <li>Future balance updates</li>
           </ul>
         </div>
-      )
-    }
+      ),
+    },
   ];
 
   return (
@@ -502,14 +581,17 @@ const Updates = () => {
             <div className="flex items-center justify-between mb-8">
               <div>
                 <h2 className="text-3xl font-bold mb-2">Latest Updates</h2>
-                <p className="text-gray-400">Stay informed about the world of Veilforge.</p>
+                <p className="text-gray-400">Patch notes, announcements, and ongoing server improvements.</p>
               </div>
               <History className="text-brand-purple w-8 h-8 opacity-50" />
             </div>
 
             <div className="space-y-6">
               {latestUpdates.map((update, i) => (
-                <div key={i} className="bg-dark-bg border border-dark-border p-6 rounded-2xl hover:border-brand-purple/30 transition-all relative overflow-hidden group">
+                <div
+                  key={i}
+                  className="bg-dark-bg border border-dark-border p-6 rounded-2xl hover:border-brand-purple/30 transition-all relative overflow-hidden group"
+                >
                   <div className="text-xs text-brand-purple-light font-bold mb-2 flex items-center gap-2">
                     {update.date}
                     <span className="w-1 h-1 bg-gray-600 rounded-full"></span>
@@ -535,6 +617,7 @@ const Updates = () => {
                 <Globe className="text-brand-purple w-6 h-6" />
                 Community & Announcements
               </h3>
+
               <div className="space-y-6 text-sm text-gray-400 leading-relaxed">
                 <div className="space-y-4">
                   <div className="flex items-center justify-between p-3 bg-dark-bg/50 rounded-xl border border-dark-border">
@@ -545,17 +628,17 @@ const Updates = () => {
                     </span>
                   </div>
                   <div className="flex items-center justify-between p-3 bg-dark-bg/50 rounded-xl border border-dark-border">
-                    <span className="text-gray-400">Events</span>
-                    <span className="text-brand-purple-light font-bold">Active & Growing</span>
+                    <span className="text-gray-400">Server Focus</span>
+                    <span className="text-brand-purple-light font-bold">Economy & PvP</span>
                   </div>
                   <div className="flex items-center justify-between p-3 bg-dark-bg/50 rounded-xl border border-dark-border">
-                    <span className="text-gray-400">Announcements</span>
-                    <span className="text-white font-bold">Discord First</span>
+                    <span className="text-gray-400">Discord</span>
+                    <span className="text-white font-bold">Main Hub</span>
                   </div>
                 </div>
 
-                <p className="pt-4">
-                  Join the Discord to stay updated on events, maintenance, economy changes, supporter ranks, and future server content.
+                <p>
+                  Join the Discord to stay updated on events, maintenance, ranks, tickets, economy changes, and future server content.
                 </p>
 
                 <div className="pt-6 border-t border-brand-purple/10">
@@ -583,7 +666,11 @@ const Rules = () => {
     'No exploiting bugs, dupes, or unintended mechanics.',
     'Respect staff and other players.',
     'No toxic behavior, hate speech, or excessive harassment.',
-    'Use common sense and play fair.'
+    'Use common sense and play fair.',
+    'No combat logging during PvP encounters.',
+    'No griefing protected claims or spawn areas.',
+    'No alt accounts to bypass bans or limits.',
+    'No advertising other servers or services.',
   ];
 
   return (
@@ -591,7 +678,7 @@ const Rules = () => {
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-5xl mb-4">Server Rules</h2>
-          <p className="text-gray-400">Keep the community healthy and fair for everyone.</p>
+          <p className="text-gray-400">Keep the community healthy, competitive, and fair for everyone.</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -601,7 +688,7 @@ const Rules = () => {
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
+              transition={{ delay: i * 0.06 }}
               className="bg-dark-card border border-dark-border p-6 rounded-2xl flex items-center gap-4 hover:border-brand-purple/30 transition-all"
             >
               <div className="w-10 h-10 bg-brand-purple/10 rounded-xl flex items-center justify-center flex-shrink-0">
@@ -654,7 +741,11 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
           <div className="md:col-span-2">
-            <a href="#home" className="flex items-center gap-3 mb-6 group w-fit">
+            <button
+              type="button"
+              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+              className="flex items-center gap-3 mb-6 group w-fit"
+            >
               <img
                 src={LOGO_URL}
                 alt={`${SERVER_NAME} logo`}
@@ -663,39 +754,81 @@ const Footer = () => {
               <span className="text-2xl font-display font-bold text-white uppercase tracking-tighter group-hover:text-brand-purple-light transition-colors">
                 {SERVER_NAME}
               </span>
-            </a>
+            </button>
 
             <p className="text-gray-500 max-w-sm leading-relaxed mb-6">
               VeilforgeSMP is a premium Minecraft survival experience focusing on competition,
               player economy, and community growth.
             </p>
+
             <div className="flex gap-4">
-              <a href={DISCORD_INVITE} target="_blank" rel="noopener noreferrer" className="p-3 bg-dark-card border border-dark-border rounded-xl text-gray-400 hover:text-brand-purple-light hover:border-brand-purple/50 transition-all">
+              <a
+                href={DISCORD_INVITE}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-3 bg-dark-card border border-dark-border rounded-xl text-gray-400 hover:text-brand-purple-light hover:border-brand-purple/50 transition-all"
+              >
                 <Discord className="w-5 h-5" />
               </a>
-              <a href="#home" className="p-3 bg-dark-card border border-dark-border rounded-xl text-gray-400 hover:text-brand-purple-light hover:border-brand-purple/50 transition-all">
+              <button
+                type="button"
+                onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                className="p-3 bg-dark-card border border-dark-border rounded-xl text-gray-400 hover:text-brand-purple-light hover:border-brand-purple/50 transition-all"
+              >
                 <Globe className="w-5 h-5" />
-              </a>
+              </button>
             </div>
           </div>
 
           <div>
             <h4 className="text-white font-bold mb-6 uppercase tracking-widest text-xs">Navigation</h4>
             <ul className="space-y-4 text-sm text-gray-500">
-              <li><a href="#home" className="hover:text-brand-purple-light transition-colors">Home</a></li>
-              <li><a href="#overview" className="hover:text-brand-purple-light transition-colors">Overview</a></li>
-              <li><a href="#ranks" className="hover:text-brand-purple-light transition-colors">Supporter Ranks</a></li>
-              <li><a href="#rules" className="hover:text-brand-purple-light transition-colors">Server Rules</a></li>
+              <li>
+                <button type="button" onClick={() => scrollToSection('home')} className="hover:text-brand-purple-light transition-colors">
+                  Home
+                </button>
+              </li>
+              <li>
+                <button type="button" onClick={() => scrollToSection('overview')} className="hover:text-brand-purple-light transition-colors">
+                  Overview
+                </button>
+              </li>
+              <li>
+                <button type="button" onClick={() => scrollToSection('ranks')} className="hover:text-brand-purple-light transition-colors">
+                  Supporter Ranks
+                </button>
+              </li>
+              <li>
+                <button type="button" onClick={() => scrollToSection('rules')} className="hover:text-brand-purple-light transition-colors">
+                  Server Rules
+                </button>
+              </li>
             </ul>
           </div>
 
           <div>
             <h4 className="text-white font-bold mb-6 uppercase tracking-widest text-xs">Support</h4>
             <ul className="space-y-4 text-sm text-gray-500">
-              <li><a href={DISCORD_INVITE} target="_blank" rel="noopener noreferrer" className="hover:text-brand-purple-light transition-colors">Discord Support</a></li>
-              <li><a href={DISCORD_INVITE} target="_blank" rel="noopener noreferrer" className="hover:text-brand-purple-light transition-colors">Create a Ticket</a></li>
-              <li><a href={DISCORD_INVITE} target="_blank" rel="noopener noreferrer" className="hover:text-brand-purple-light transition-colors">Buy Ranks</a></li>
-              <li><a href="#" className="hover:text-brand-purple-light transition-colors">Privacy Policy</a></li>
+              <li>
+                <a href={DISCORD_INVITE} target="_blank" rel="noopener noreferrer" className="hover:text-brand-purple-light transition-colors">
+                  Discord Support
+                </a>
+              </li>
+              <li>
+                <a href={DISCORD_INVITE} target="_blank" rel="noopener noreferrer" className="hover:text-brand-purple-light transition-colors">
+                  Create a Ticket
+                </a>
+              </li>
+              <li>
+                <a href={DISCORD_INVITE} target="_blank" rel="noopener noreferrer" className="hover:text-brand-purple-light transition-colors">
+                  Buy Ranks
+                </a>
+              </li>
+              <li>
+                <button type="button" onClick={() => scrollToSection('updates')} className="hover:text-brand-purple-light transition-colors">
+                  Latest Updates
+                </button>
+              </li>
             </ul>
           </div>
         </div>
