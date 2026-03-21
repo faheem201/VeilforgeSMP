@@ -4,20 +4,18 @@
  */
 
 import React, { useState, useEffect } from 'react';
-import { 
-  MessageSquare as Discord, 
-  Gamepad2, 
-  Shield, 
-  Sword, 
-  Coins, 
-  Globe, 
-  Users, 
-  Zap, 
-  Flame, 
-  Skull, 
-  CheckCircle2, 
-  Copy, 
-  ExternalLink, 
+import {
+  MessageSquare as Discord,
+  Gamepad2,
+  Sword,
+  Coins,
+  Globe,
+  Users,
+  Zap,
+  Flame,
+  Skull,
+  CheckCircle2,
+  Copy,
   ChevronRight,
   Menu,
   X,
@@ -33,7 +31,7 @@ const SERVER_NAME = "VeilforgeSMP";
 const SERVER_IP = "play.veilforge.fun";
 const DISCORD_INVITE = "https://discord.gg/mb8ukyqdyA";
 const SERVER_VERSIONS = "Java 1.18.x – 1.21.11";
-const LOGO_URL = "/logo.png"; // Assuming the uploaded logo is named logo.png in the root
+const LOGO_URL = "/server-icon.png";
 
 // --- Components ---
 
@@ -48,7 +46,7 @@ const Navbar = () => {
   }, []);
 
   const navLinks = [
-    { name: 'Home', href: '#' },
+    { name: 'Home', href: '#home' },
     { name: 'Overview', href: '#overview' },
     { name: 'Play', href: '#play' },
     { name: 'Ranks', href: '#ranks' },
@@ -57,26 +55,39 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-dark-bg/80 backdrop-blur-md border-b border-dark-border py-3' : 'bg-transparent py-6'}`}>
+    <nav
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        scrolled
+          ? 'bg-dark-bg/80 backdrop-blur-md border-b border-dark-border py-3'
+          : 'bg-transparent py-6'
+      }`}
+    >
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
-        <div className="flex items-center gap-3">
-          <span className="text-xl font-display font-bold tracking-tighter text-white uppercase">{SERVER_NAME}</span>
-        </div>
+        <a href="#home" className="flex items-center gap-3 group">
+          <img
+            src={LOGO_URL}
+            alt={`${SERVER_NAME} logo`}
+            className="w-10 h-10 object-contain rounded-lg"
+          />
+          <span className="text-xl font-display font-bold tracking-tighter text-white uppercase group-hover:text-brand-purple-light transition-colors">
+            {SERVER_NAME}
+          </span>
+        </a>
 
         {/* Desktop Nav */}
         <div className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (
-            <a 
-              key={link.name} 
-              href={link.href} 
+            <a
+              key={link.name}
+              href={link.href}
               className="text-sm font-medium text-gray-400 hover:text-brand-purple-light transition-colors"
             >
               {link.name}
             </a>
           ))}
-          <a 
-            href={DISCORD_INVITE} 
-            target="_blank" 
+          <a
+            href={DISCORD_INVITE}
+            target="_blank"
             rel="noopener noreferrer"
             className="bg-brand-purple hover:bg-brand-purple-dark text-white px-5 py-2 rounded-full text-sm font-semibold transition-all flex items-center gap-2 glow-purple"
           >
@@ -93,25 +104,25 @@ const Navbar = () => {
       {/* Mobile Menu */}
       <AnimatePresence>
         {isOpen && (
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             className="absolute top-full left-0 right-0 bg-dark-bg border-b border-dark-border p-6 md:hidden flex flex-col gap-4"
           >
             {navLinks.map((link) => (
-              <a 
-                key={link.name} 
-                href={link.href} 
+              <a
+                key={link.name}
+                href={link.href}
                 className="text-lg font-medium text-gray-300"
                 onClick={() => setIsOpen(false)}
               >
                 {link.name}
               </a>
             ))}
-            <a 
-              href={DISCORD_INVITE} 
-              target="_blank" 
+            <a
+              href={DISCORD_INVITE}
+              target="_blank"
               rel="noopener noreferrer"
               className="bg-brand-purple text-white px-5 py-3 rounded-xl text-center font-semibold"
             >
@@ -134,7 +145,7 @@ const Hero = () => {
   };
 
   return (
-    <section className="relative pt-32 pb-20 md:pt-48 md:pb-32 overflow-hidden bg-mesh">
+    <section id="home" className="relative pt-32 pb-20 md:pt-48 md:pb-32 overflow-hidden bg-mesh">
       <div className="max-w-7xl mx-auto px-6 relative z-10 text-center">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -153,17 +164,17 @@ const Hero = () => {
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
-            <a 
-              href={DISCORD_INVITE} 
-              target="_blank" 
+            <a
+              href={DISCORD_INVITE}
+              target="_blank"
               rel="noopener noreferrer"
               className="w-full sm:w-auto bg-brand-purple hover:bg-brand-purple-dark text-white px-8 py-4 rounded-xl font-bold text-lg transition-all flex items-center justify-center gap-3 glow-purple-strong group"
             >
               Join Discord
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </a>
-            <a 
-              href="#ranks" 
+            <a
+              href="#ranks"
               className="w-full sm:w-auto bg-white/5 hover:bg-white/10 border border-white/10 text-white px-8 py-4 rounded-xl font-bold text-lg transition-all flex items-center justify-center gap-3"
             >
               View Ranks
@@ -173,7 +184,7 @@ const Hero = () => {
           <div className="inline-flex items-center gap-4 p-2 pl-6 bg-dark-card border border-dark-border rounded-2xl">
             <span className="text-gray-400 font-mono text-sm uppercase tracking-wider">Server IP:</span>
             <span className="text-white font-mono font-bold">{SERVER_IP}</span>
-            <button 
+            <button
               onClick={copyIP}
               className="p-3 bg-brand-purple/10 hover:bg-brand-purple/20 text-brand-purple-light rounded-xl transition-all relative group"
             >
@@ -185,8 +196,7 @@ const Hero = () => {
           </div>
         </motion.div>
       </div>
-      
-      {/* Background Decorative Elements */}
+
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-brand-purple/5 rounded-full blur-[120px] pointer-events-none"></div>
     </section>
   );
@@ -226,7 +236,7 @@ const Overview = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {features.map((f, i) => (
-            <motion.div 
+            <motion.div
               key={i}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -272,10 +282,10 @@ const PlayInfo = () => {
           <div>
             <h2 className="text-3xl md:text-5xl mb-6">Ready to Join?</h2>
             <p className="text-gray-400 text-lg mb-8 leading-relaxed">
-              VeilforgeSMP is designed for players who want a serious, competitive survival experience. 
+              VeilforgeSMP is designed for players who want a serious, competitive survival experience.
               Whether you're a builder, a warrior, or a merchant, there's a place for you in our world.
             </p>
-            
+
             <ul className="space-y-4 mb-10">
               {[
                 "Donut-Inspired Survival Economy",
@@ -301,12 +311,12 @@ const PlayInfo = () => {
               </div>
             </div>
           </div>
-          
+
           <div className="relative">
             <div className="aspect-video bg-dark-bg rounded-3xl border border-dark-border overflow-hidden glow-purple relative">
-              <img 
-                src="https://picsum.photos/seed/minecraft-dark/1200/800" 
-                alt="Server Preview" 
+              <img
+                src="https://picsum.photos/seed/minecraft-dark/1200/800"
+                alt="Server Preview"
                 className="w-full h-full object-cover opacity-60"
                 referrerPolicy="no-referrer"
               />
@@ -316,7 +326,6 @@ const PlayInfo = () => {
                 </div>
               </div>
             </div>
-            {/* Floating decoration */}
             <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-brand-purple/20 rounded-full blur-3xl"></div>
             <div className="absolute -top-6 -left-6 w-32 h-32 bg-brand-purple/20 rounded-full blur-3xl"></div>
           </div>
@@ -381,7 +390,7 @@ const Ranks = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
           {ranks.map((rank, i) => (
-            <motion.div 
+            <motion.div
               key={i}
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
@@ -394,7 +403,7 @@ const Ranks = () => {
                   Most Popular
                 </div>
               )}
-              
+
               <div className="mb-8 flex items-center justify-between">
                 <div>
                   <h3 className="text-2xl font-bold mb-1">{rank.name}</h3>
@@ -425,7 +434,7 @@ const Ranks = () => {
               </div>
 
               <div className="mt-auto">
-                <a 
+                <a
                   href={DISCORD_INVITE}
                   target="_blank"
                   rel="noopener noreferrer"
@@ -453,9 +462,9 @@ const Ranks = () => {
 
 const Updates = () => {
   const latestUpdates = [
-    { 
-      date: "Today", 
-      title: "EID EVENT ANNOUNCEMENT", 
+    {
+      date: "Today",
+      title: "EID EVENT ANNOUNCEMENT",
       type: "Event",
       content: (
         <div className="space-y-4">
@@ -478,9 +487,9 @@ const Updates = () => {
         </div>
       )
     },
-    { 
-      date: "March 16, 2026", 
-      title: "Wadiyan Foreign Legion (WFL)", 
+    {
+      date: "March 16, 2026",
+      title: "Wadiyan Foreign Legion (WFL)",
       type: "Community",
       content: (
         <div className="space-y-4">
@@ -510,9 +519,9 @@ const Updates = () => {
         </div>
       )
     },
-    { 
-      date: "March 16, 2026", 
-      title: "The Sovereign Union (TSU) Statement", 
+    {
+      date: "March 16, 2026",
+      title: "The Sovereign Union (TSU) Statement",
       type: "Official",
       content: (
         <div className="space-y-4">
@@ -532,9 +541,9 @@ const Updates = () => {
         </div>
       )
     },
-    { 
-      date: "March 16, 2026", 
-      title: "Hotfix v1.0.2", 
+    {
+      date: "March 16, 2026",
+      title: "Hotfix v1.0.2",
       type: "Patch",
       content: (
         <div className="space-y-4">
@@ -589,7 +598,7 @@ const Updates = () => {
                   <div className="text-gray-400 text-sm">{update.content}</div>
                 </div>
               ))}
-              
+
               <div className="p-12 border-2 border-dashed border-dark-border rounded-3xl flex flex-col items-center justify-center text-center">
                 <div className="w-12 h-12 bg-white/5 rounded-full flex items-center justify-center mb-4">
                   <Zap className="text-gray-600 w-6 h-6" />
@@ -627,11 +636,11 @@ const Updates = () => {
                 <p className="pt-4">
                   VeilforgeSMP is currently in its prime. Join the Discord to participate in the Eid event and claim your 500 shards!
                 </p>
-                
+
                 <div className="pt-6 border-t border-brand-purple/10">
-                  <a 
-                    href={DISCORD_INVITE} 
-                    target="_blank" 
+                  <a
+                    href={DISCORD_INVITE}
+                    target="_blank"
                     rel="noopener noreferrer"
                     className="text-brand-purple-light font-bold flex items-center gap-2 hover:gap-3 transition-all"
                   >
@@ -678,7 +687,7 @@ const Rules = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {rules.map((rule, i) => (
-            <motion.div 
+            <motion.div
               key={i}
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -703,21 +712,20 @@ const CommunityCTA = () => {
     <section className="py-24 bg-mesh">
       <div className="max-w-5xl mx-auto px-6">
         <div className="bg-brand-purple rounded-[40px] p-12 md:p-20 text-center relative overflow-hidden glow-purple-strong">
-          {/* Decorative background */}
           <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
           <div className="absolute bottom-0 left-0 w-64 h-64 bg-black/20 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2"></div>
-          
+
           <div className="relative z-10">
             <h2 className="text-4xl md:text-6xl font-display font-extrabold text-white mb-6">
               Join the Community
             </h2>
             <p className="text-white/80 text-lg md:text-xl mb-10 max-w-2xl mx-auto leading-relaxed">
-              Stay updated, create tickets, buy ranks, and take part in exclusive events. 
+              Stay updated, create tickets, buy ranks, and take part in exclusive events.
               Our Discord is the heart of VeilforgeSMP.
             </p>
-            <a 
-              href={DISCORD_INVITE} 
-              target="_blank" 
+            <a
+              href={DISCORD_INVITE}
+              target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-3 bg-white text-brand-purple px-10 py-5 rounded-2xl font-bold text-xl hover:scale-105 transition-all shadow-xl"
             >
@@ -737,11 +745,19 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
           <div className="md:col-span-2">
-            <div className="flex items-center gap-3 mb-6">
-              <span className="text-2xl font-display font-bold text-white uppercase tracking-tighter">{SERVER_NAME}</span>
-            </div>
+            <a href="#home" className="flex items-center gap-3 mb-6 group w-fit">
+              <img
+                src={LOGO_URL}
+                alt={`${SERVER_NAME} logo`}
+                className="w-10 h-10 object-contain rounded-lg"
+              />
+              <span className="text-2xl font-display font-bold text-white uppercase tracking-tighter group-hover:text-brand-purple-light transition-colors">
+                {SERVER_NAME}
+              </span>
+            </a>
+
             <p className="text-gray-500 max-w-sm leading-relaxed mb-6">
-              VeilforgeSMP is a premium Minecraft survival experience focusing on competition, 
+              VeilforgeSMP is a premium Minecraft survival experience focusing on competition,
               player economy, and community growth.
             </p>
             <div className="flex gap-4">
@@ -757,7 +773,7 @@ const Footer = () => {
           <div>
             <h4 className="text-white font-bold mb-6 uppercase tracking-widest text-xs">Navigation</h4>
             <ul className="space-y-4 text-sm text-gray-500">
-              <li><a href="#" className="hover:text-brand-purple-light transition-colors">Home</a></li>
+              <li><a href="#home" className="hover:text-brand-purple-light transition-colors">Home</a></li>
               <li><a href="#overview" className="hover:text-brand-purple-light transition-colors">Overview</a></li>
               <li><a href="#ranks" className="hover:text-brand-purple-light transition-colors">Supporter Ranks</a></li>
               <li><a href="#rules" className="hover:text-brand-purple-light transition-colors">Server Rules</a></li>
