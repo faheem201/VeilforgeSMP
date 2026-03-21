@@ -312,31 +312,37 @@ const PlayInfo = () => {
             </div>
           </div>
 
-          <a
-            href="https://www.youtube.com/watch?v=LODV5L0Htis"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block relative group"
-          >
-            <div className="aspect-video bg-dark-bg rounded-3xl border border-dark-border overflow-hidden glow-purple relative group hover:scale-[1.02] transition-all duration-300">
-              
-              <iframe
-                className="w-full h-full rounded-3xl"
-                src="https://www.youtube.com/embed/LODV5L0Htis"
-                title="Oath Ceremony | VeilForgeSMP"
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-            ></iframe>
-                
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="w-20 h-20 bg-brand-purple rounded-full flex items-center justify-center glow-purple-strong cursor-pointer hover:scale-110 transition-transform">
-                  <Gamepad2 className="text-white w-10 h-10" />
+          <div className="relative">
+            <a
+              href="https://www.youtube.com/watch?v=LODV5L0Htis"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block group"
+            >
+              <div className="aspect-video bg-dark-bg rounded-3xl border border-dark-border overflow-hidden glow-purple relative hover:scale-[1.02] transition-all duration-300">
+
+                <iframe
+                  className="w-full h-full pointer-events-none"
+                  src="https://www.youtube.com/embed/LODV5L0Htis"
+                  title="VeilforgeSMP Trailer"
+                  frameBorder="0"
+                  allowFullScreen
+                ></iframe>
+
+                {/* Center Icon */}
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="w-20 h-20 bg-brand-purple rounded-full flex items-center justify-center glow-purple-strong group-hover:scale-110 transition-transform">
+                    <Gamepad2 className="text-white w-10 h-10" />
+                  </div>
                 </div>
+
               </div>
-              
-            </div>
-          </a>
+            </a>
+
+            {/* Glow effects */}
+            <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-brand-purple/20 rounded-full blur-3xl"></div>
+            <div className="absolute -top-6 -left-6 w-32 h-32 bg-brand-purple/20 rounded-full blur-3xl"></div>
+          </div>
             <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-brand-purple/20 rounded-full blur-3xl"></div>
             <div className="absolute -top-6 -left-6 w-32 h-32 bg-brand-purple/20 rounded-full blur-3xl"></div>
           </div>
