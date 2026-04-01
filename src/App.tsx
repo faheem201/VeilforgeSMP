@@ -451,7 +451,7 @@ const Ranks = () => {
       button:
         'bg-brand-purple hover:bg-brand-purple-dark text-white shadow-[0_0_30px_rgba(139,92,246,0.3)]',
       perks: [
-        '+3 homes total',
+        '+2 homes total',
         '/anvil',
         'Better /rtp cooldown',
         '+5 auction slots total',
