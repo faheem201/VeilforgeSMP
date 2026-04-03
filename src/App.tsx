@@ -432,7 +432,7 @@ const Ranks = () => {
       button: 'bg-white/5 hover:bg-white/10 border border-white/10 text-white',
       perks: [
         '+1 Home',
-        '',
+        '+5 order slots',
         '+2 auction slots',
         'Small shard bonus',
         'Rank tag',
@@ -570,6 +570,37 @@ const Ranks = () => {
 
 const Updates = () => {
   const latestUpdates = [
+    {
+     date: '3/30/2026 10:00 PM',
+     title: 'VeilforgeSMP - Election Results 2026',
+     type: 'Election',
+     content: (
+       <div className="space-y-4">
+         <div>
+           <h4 className="text-white font-bold text-sm mb-2">Election Result</h4>
+           <ul className="list-disc list-inside text-gray-400 text-xs space-y-1">
+           <li>Rylov won the Presidential Election with the Beacon symbol, securing 52.6% of the total vote.</li>
+           <li>TiringBiring finished as runner-up with the Mace symbol, receiving 47.4% of the vote.</li>
+        </ul>
+      </div>
+      <div>
+        <h4 className="text-white font-bold text-sm mb-2">Elected Leadership</h4>
+        <ul className="list-disc list-inside text-gray-400 text-xs space-y-1">
+          <li>President: @Radif/Rylov (IGN: Rylov)</li>
+          <li>Vice President: @TAPI (IGN: oTAPI)</li>
+        </ul>
+       </div>
+       <div>
+        <h4 className="text-white font-bold text-sm mb-2">Presidential Government Members</h4>
+        <ul className="list-disc list-inside text-gray-400 text-xs space-y-1">
+          <li>Prime Minister: @Bingo (IGN: BingoGames)</li>
+          <li>Secretary of State: @lolnypop (IGN: lolnypop)</li>
+          <li>Secretary of Treasury: @Is Duniya Ka Papa (IGN: NOT_Xelvion)</li>
+        </ul>
+      </div>
+       </div>
+     ),
+    },
     {
       date: '3/16/2026 7:17 AM',
       title: 'VeilforgeSMP - Hotfix v1.0.2',
