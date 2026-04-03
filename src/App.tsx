@@ -465,19 +465,28 @@ const Ranks = () => {
     },
     {
       name: 'Inferno',
-      price: 'Coming Soon',
-      badge: 'Teaser',
-      teaser: [
-        'A darker tier is being forged.',
-        'Bigger perks, stronger identity, and premium access are on the way.',
-        'Be ready when Inferno finally unlocks.',
-      ],
-      icon: <Skull className="w-6 h-6 text-red-300" />,
-      accent: 'from-red-500/20 to-transparent',
-      border: 'border-red-500/25',
-      button: 'bg-white/5 hover:bg-white/10 border border-white/10 text-white',
-    },
-  ];
+      price: '300 BDT',
+      badge: 'Most Premium',
+      featured: true,
+      icon: <Flame className="w-6 h-6 text-red-300" />,
+      accent: 'from-brand-purple/30 to-transparent',
+      border: 'border-brand-purple/40',
+      button:
+        'bg-brand-purple hover:bg-brand-purple-dark text-white shadow-[0_0_30px_rgba(139,92,246,0.3)]',
+      perks: [
+        '+3 homes total',
+        '/anvil',
+        '+15 order slots total',
+        '+10 auction slots total',
+        'Large shard bonus',
+        'Large enderchest',
+        'Get shards everywhere',
+        'Priority support',
+        'Rank tag',
+        '1 Crimson Crate Key',
+        'Fly in lobby',
+    ],
+  },
 
   return (
     <section id="ranks" className="py-24 bg-dark-bg">
