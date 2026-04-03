@@ -465,7 +465,7 @@ const Ranks = () => {
     },
     {
       name: 'Inferno',
-      price: '300 BDT',
+      price: '250 BDT',
       badge: 'Most Premium',
       featured: true,
       icon: <Flame className="w-6 h-6 text-red-300" />,
@@ -485,8 +485,8 @@ const Ranks = () => {
         'Rank tag',
         '1 Crimson Crate Key',
         'Fly in lobby',
-    ],
-  },
+      ],
+    },
 
   return (
     <section id="ranks" className="py-24 bg-dark-bg">
