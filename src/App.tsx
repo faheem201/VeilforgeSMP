@@ -445,7 +445,7 @@ const Ranks = () => {
       price: '150 BDT',
       badge: 'Best Value',
       featured: true,
-      icon: <Flame className="w-6 h-6 text-orange-300" />,
+      icon: <Sun className="w-6 h-6 text-orange-300" />,
       accent: 'from-brand-purple/30 to-transparent',
       border: 'border-brand-purple/40',
       button:
