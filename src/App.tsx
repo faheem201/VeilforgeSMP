@@ -432,10 +432,11 @@ const Ranks = () => {
       border: 'border-yellow-400/25',
       button: 'bg-white/5 hover:bg-white/10 border border-white/10 text-white',
       perks: [
+        'Duration: 30 Days',
         '+1 Home',
         '+5 order slots',
         '+2 auction slots',
-        '500 Shard bonus',
+        'Small shard bonus',
         'Rank tag',
         '2 Common Crate Keys',
         'Priority support',
@@ -452,11 +453,12 @@ const Ranks = () => {
       button:
         'bg-brand-purple hover:bg-brand-purple-dark text-white shadow-[0_0_30px_rgba(139,92,246,0.3)]',
       perks: [
+        'Duration: 30 Days',
         '+2 homes total',
         '/anvil',
         '+10 order slots total',
         '+5 auction slots total',
-        '1500 Shard bonus',
+        'Medium shard bonus',
         'Get shards everywhere',
         'Priority support',
         'Rank tag',
@@ -466,7 +468,7 @@ const Ranks = () => {
     },
     {
       name: 'Inferno',
-      price: '300 BDT',
+      price: '250 BDT',
       badge: 'Most Premium',
       featured: true,
       icon: <Flame className="w-6 h-6 text-red-300" />,
@@ -475,12 +477,12 @@ const Ranks = () => {
       button:
         'bg-brand-purple hover:bg-brand-purple-dark text-white shadow-[0_0_30px_rgba(139,92,246,0.3)]',
       perks: [
+        'Duration: 30 Days',
         '+3 homes total',
         '/anvil',
-        'Nightvision'
         '+15 order slots total',
         '+10 auction slots total',
-        '2000 Shard Bonus',
+        'Large shard bonus',
         'Large enderchest',
         'Get shards everywhere',
         'Priority support',
@@ -512,9 +514,7 @@ const Ranks = () => {
                 rank.featured ? 'md:-translate-y-2 shadow-[0_0_35px_rgba(139,92,246,0.18)]' : ''
               }`}
             >
-              <div
-                className={`absolute inset-x-0 top-0 h-28 bg-gradient-to-b ${rank.accent} pointer-events-none`}
-              ></div>
+              <div className={`absolute inset-x-0 top-0 h-28 bg-gradient-to-b ${rank.accent} pointer-events-none`}></div>
 
               <div className="relative p-8 flex flex-col h-full">
                 <div className="flex items-start justify-between gap-4 mb-8">
@@ -533,27 +533,14 @@ const Ranks = () => {
                   </div>
                 </div>
 
-                {!rank.teaser ? (
-                  <ul className="space-y-4 mb-8 flex-grow">
-                    {rank.perks?.map((perk, j) => (
-                      <li key={j} className="flex items-start gap-3 text-sm text-gray-300">
-                        <CheckCircle2 className="w-4 h-4 text-brand-purple mt-0.5 flex-shrink-0" />
-                        <span>{perk}</span>
-                      </li>
-                    ))}
-                  </ul>
-                ) : (
-                  <div className="rounded-2xl border border-white/10 bg-black/20 p-5 mb-8 flex-grow">
-                    <ul className="space-y-4">
-                      {rank.teaser.map((line, index) => (
-                        <li key={index} className="flex items-start gap-3 text-sm text-gray-300">
-                          <Info className="w-4 h-4 text-brand-purple-light mt-0.5 flex-shrink-0" />
-                          <span>{line}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
+                <ul className="space-y-4 mb-8 flex-grow">
+                  {rank.perks.map((perk, j) => (
+                    <li key={j} className="flex items-start gap-3 text-sm text-gray-300">
+                      <CheckCircle2 className="w-4 h-4 text-brand-purple mt-0.5 flex-shrink-0" />
+                      <span>{perk}</span>
+                    </li>
+                  ))}
+                </ul>
 
                 <div className="mt-auto">
                   <a
@@ -712,9 +699,7 @@ const Updates = () => {
                     <span className="w-1 h-1 bg-gray-600 rounded-full"></span>
                     <span className="text-gray-500 uppercase tracking-tighter">{update.type}</span>
                   </div>
-                  <h3 className="text-xl mb-4 group-hover:text-brand-purple-light transition-colors">
-                    {update.title}
-                  </h3>
+                  <h3 className="text-xl mb-4 group-hover:text-brand-purple-light transition-colors">{update.title}</h3>
                   <div className="text-gray-400 text-sm">{update.content}</div>
                 </div>
               ))}
@@ -844,9 +829,7 @@ const Rules = () => {
               transition={{ delay: i * 0.06 }}
               className="bg-dark-card border border-dark-border p-6 rounded-2xl flex items-center gap-4 hover:border-brand-purple/30 transition-all"
             >
-              <div
-                className={`w-11 h-11 ${rule.bg} rounded-xl flex items-center justify-center flex-shrink-0`}
-              >
+              <div className={`w-11 h-11 ${rule.bg} rounded-xl flex items-center justify-center flex-shrink-0`}>
                 {rule.icon}
               </div>
               <p className="text-gray-300 font-medium text-sm">{rule.text}</p>
@@ -963,38 +946,22 @@ const Footer = () => {
             <h4 className="text-white font-bold mb-6 uppercase tracking-widest text-xs">Navigation</h4>
             <ul className="space-y-4 text-sm text-gray-500">
               <li>
-                <button
-                  type="button"
-                  onClick={() => scrollToSection('home')}
-                  className="hover:text-brand-purple-light transition-colors"
-                >
+                <button type="button" onClick={() => scrollToSection('home')} className="hover:text-brand-purple-light transition-colors">
                   Home
                 </button>
               </li>
               <li>
-                <button
-                  type="button"
-                  onClick={() => scrollToSection('overview')}
-                  className="hover:text-brand-purple-light transition-colors"
-                >
+                <button type="button" onClick={() => scrollToSection('overview')} className="hover:text-brand-purple-light transition-colors">
                   Overview
                 </button>
               </li>
               <li>
-                <button
-                  type="button"
-                  onClick={() => scrollToSection('ranks')}
-                  className="hover:text-brand-purple-light transition-colors"
-                >
+                <button type="button" onClick={() => scrollToSection('ranks')} className="hover:text-brand-purple-light transition-colors">
                   Supporter Ranks
                 </button>
               </li>
               <li>
-                <button
-                  type="button"
-                  onClick={() => scrollToSection('rules')}
-                  className="hover:text-brand-purple-light transition-colors"
-                >
+                <button type="button" onClick={() => scrollToSection('rules')} className="hover:text-brand-purple-light transition-colors">
                   Server Rules
                 </button>
               </li>
@@ -1005,41 +972,22 @@ const Footer = () => {
             <h4 className="text-white font-bold mb-6 uppercase tracking-widest text-xs">Support</h4>
             <ul className="space-y-4 text-sm text-gray-500">
               <li>
-                <a
-                  href={DISCORD_INVITE}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-brand-purple-light transition-colors"
-                >
+                <a href={DISCORD_INVITE} target="_blank" rel="noopener noreferrer" className="hover:text-brand-purple-light transition-colors">
                   Discord Support
                 </a>
               </li>
               <li>
-                <a
-                  href={DISCORD_INVITE}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-brand-purple-light transition-colors"
-                >
+                <a href={DISCORD_INVITE} target="_blank" rel="noopener noreferrer" className="hover:text-brand-purple-light transition-colors">
                   Create a Ticket
                 </a>
               </li>
               <li>
-                <a
-                  href={DISCORD_INVITE}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-brand-purple-light transition-colors"
-                >
+                <a href={DISCORD_INVITE} target="_blank" rel="noopener noreferrer" className="hover:text-brand-purple-light transition-colors">
                   Buy Ranks
                 </a>
               </li>
               <li>
-                <button
-                  type="button"
-                  onClick={() => scrollToSection('updates')}
-                  className="hover:text-brand-purple-light transition-colors"
-                >
+                <button type="button" onClick={() => scrollToSection('updates')} className="hover:text-brand-purple-light transition-colors">
                   Latest Updates
                 </button>
               </li>
