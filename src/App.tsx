@@ -487,6 +487,7 @@ const Ranks = () => {
         'Fly in lobby',
       ],
     },
+  ];
 
   return (
     <section id="ranks" className="py-24 bg-dark-bg">
@@ -508,7 +509,9 @@ const Ranks = () => {
                 rank.featured ? 'md:-translate-y-2 shadow-[0_0_35px_rgba(139,92,246,0.18)]' : ''
               }`}
             >
-              <div className={`absolute inset-x-0 top-0 h-28 bg-gradient-to-b ${rank.accent} pointer-events-none`}></div>
+              <div
+                className={`absolute inset-x-0 top-0 h-28 bg-gradient-to-b ${rank.accent} pointer-events-none`}
+              ></div>
 
               <div className="relative p-8 flex flex-col h-full">
                 <div className="flex items-start justify-between gap-4 mb-8">
@@ -580,35 +583,35 @@ const Ranks = () => {
 const Updates = () => {
   const latestUpdates = [
     {
-     date: '3/30/2026 11:00 PM',
-     title: 'VeilforgeSMP - Election Results 2026',
-     type: 'Election',
-     content: (
-       <div className="space-y-4">
-         <div>
-           <h4 className="text-white font-bold text-sm mb-2">Election Result</h4>
-           <ul className="list-disc list-inside text-gray-400 text-xs space-y-1">
-           <li>Rylov won the Presidential Election with the Beacon symbol, securing 52.6% of the total vote.</li>
-           <li>TiringBiring finished as runner-up with the Mace symbol, receiving 47.4% of the vote.</li>
-        </ul>
-      </div>
-      <div>
-        <h4 className="text-white font-bold text-sm mb-2">Elected Leadership</h4>
-        <ul className="list-disc list-inside text-gray-400 text-xs space-y-1">
-          <li>President: @Radif/Rylov (IGN: Rylov)</li>
-          <li>Vice President: @TAPI (IGN: oTAPI)</li>
-        </ul>
-       </div>
-       <div>
-        <h4 className="text-white font-bold text-sm mb-2">Presidential Government Members</h4>
-        <ul className="list-disc list-inside text-gray-400 text-xs space-y-1">
-          <li>Prime Minister: @Bingo (IGN: BingoGames)</li>
-          <li>Secretary of State: @lolnypop (IGN: lolnypop)</li>
-          <li>Secretary of Treasury: @Is Duniya Ka Papa (IGN: NOT_Xelvion)</li>
-        </ul>
-      </div>
-       </div>
-     ),
+      date: '3/30/2026 11:00 PM',
+      title: 'VeilforgeSMP - Election Results 2026',
+      type: 'Election',
+      content: (
+        <div className="space-y-4">
+          <div>
+            <h4 className="text-white font-bold text-sm mb-2">Election Result</h4>
+            <ul className="list-disc list-inside text-gray-400 text-xs space-y-1">
+              <li>Rylov won the Presidential Election with the Beacon symbol, securing 52.6% of the total vote.</li>
+              <li>TiringBiring finished as runner-up with the Mace symbol, receiving 47.4% of the vote.</li>
+            </ul>
+          </div>
+          <div>
+            <h4 className="text-white font-bold text-sm mb-2">Elected Leadership</h4>
+            <ul className="list-disc list-inside text-gray-400 text-xs space-y-1">
+              <li>President: @Radif/Rylov (IGN: Rylov)</li>
+              <li>Vice President: @TAPI (IGN: oTAPI)</li>
+            </ul>
+          </div>
+          <div>
+            <h4 className="text-white font-bold text-sm mb-2">Presidential Government Members</h4>
+            <ul className="list-disc list-inside text-gray-400 text-xs space-y-1">
+              <li>Prime Minister: @Bingo (IGN: BingoGames)</li>
+              <li>Secretary of State: @lolnypop (IGN: lolnypop)</li>
+              <li>Secretary of Treasury: @Is Duniya Ka Papa (IGN: NOT_Xelvion)</li>
+            </ul>
+          </div>
+        </div>
+      ),
     },
     {
       date: '3/16/2026 7:17 AM',
@@ -706,7 +709,9 @@ const Updates = () => {
                     <span className="w-1 h-1 bg-gray-600 rounded-full"></span>
                     <span className="text-gray-500 uppercase tracking-tighter">{update.type}</span>
                   </div>
-                  <h3 className="text-xl mb-4 group-hover:text-brand-purple-light transition-colors">{update.title}</h3>
+                  <h3 className="text-xl mb-4 group-hover:text-brand-purple-light transition-colors">
+                    {update.title}
+                  </h3>
                   <div className="text-gray-400 text-sm">{update.content}</div>
                 </div>
               ))}
@@ -836,7 +841,9 @@ const Rules = () => {
               transition={{ delay: i * 0.06 }}
               className="bg-dark-card border border-dark-border p-6 rounded-2xl flex items-center gap-4 hover:border-brand-purple/30 transition-all"
             >
-              <div className={`w-11 h-11 ${rule.bg} rounded-xl flex items-center justify-center flex-shrink-0`}>
+              <div
+                className={`w-11 h-11 ${rule.bg} rounded-xl flex items-center justify-center flex-shrink-0`}
+              >
                 {rule.icon}
               </div>
               <p className="text-gray-300 font-medium text-sm">{rule.text}</p>
@@ -953,22 +960,38 @@ const Footer = () => {
             <h4 className="text-white font-bold mb-6 uppercase tracking-widest text-xs">Navigation</h4>
             <ul className="space-y-4 text-sm text-gray-500">
               <li>
-                <button type="button" onClick={() => scrollToSection('home')} className="hover:text-brand-purple-light transition-colors">
+                <button
+                  type="button"
+                  onClick={() => scrollToSection('home')}
+                  className="hover:text-brand-purple-light transition-colors"
+                >
                   Home
                 </button>
               </li>
               <li>
-                <button type="button" onClick={() => scrollToSection('overview')} className="hover:text-brand-purple-light transition-colors">
+                <button
+                  type="button"
+                  onClick={() => scrollToSection('overview')}
+                  className="hover:text-brand-purple-light transition-colors"
+                >
                   Overview
                 </button>
               </li>
               <li>
-                <button type="button" onClick={() => scrollToSection('ranks')} className="hover:text-brand-purple-light transition-colors">
+                <button
+                  type="button"
+                  onClick={() => scrollToSection('ranks')}
+                  className="hover:text-brand-purple-light transition-colors"
+                >
                   Supporter Ranks
                 </button>
               </li>
               <li>
-                <button type="button" onClick={() => scrollToSection('rules')} className="hover:text-brand-purple-light transition-colors">
+                <button
+                  type="button"
+                  onClick={() => scrollToSection('rules')}
+                  className="hover:text-brand-purple-light transition-colors"
+                >
                   Server Rules
                 </button>
               </li>
@@ -979,22 +1002,41 @@ const Footer = () => {
             <h4 className="text-white font-bold mb-6 uppercase tracking-widest text-xs">Support</h4>
             <ul className="space-y-4 text-sm text-gray-500">
               <li>
-                <a href={DISCORD_INVITE} target="_blank" rel="noopener noreferrer" className="hover:text-brand-purple-light transition-colors">
+                <a
+                  href={DISCORD_INVITE}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-brand-purple-light transition-colors"
+                >
                   Discord Support
                 </a>
               </li>
               <li>
-                <a href={DISCORD_INVITE} target="_blank" rel="noopener noreferrer" className="hover:text-brand-purple-light transition-colors">
+                <a
+                  href={DISCORD_INVITE}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-brand-purple-light transition-colors"
+                >
                   Create a Ticket
                 </a>
               </li>
               <li>
-                <a href={DISCORD_INVITE} target="_blank" rel="noopener noreferrer" className="hover:text-brand-purple-light transition-colors">
+                <a
+                  href={DISCORD_INVITE}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-brand-purple-light transition-colors"
+                >
                   Buy Ranks
                 </a>
               </li>
               <li>
-                <button type="button" onClick={() => scrollToSection('updates')} className="hover:text-brand-purple-light transition-colors">
+                <button
+                  type="button"
+                  onClick={() => scrollToSection('updates')}
+                  className="hover:text-brand-purple-light transition-colors"
+                >
                   Latest Updates
                 </button>
               </li>
