@@ -432,7 +432,7 @@ const Ranks = () => {
       button: 'bg-white/5 hover:bg-white/10 border border-white/10 text-white',
       perks: [
         '+1 Home',
-        'Slightly shorter /rtp cooldown',
+        '',
         '+2 auction slots',
         'Small shard bonus',
         'Rank tag',
@@ -453,7 +453,7 @@ const Ranks = () => {
       perks: [
         '+2 homes total',
         '/anvil',
-        'Better /rtp cooldown',
+        '+10 order slots total',
         '+5 auction slots total',
         'Medium shard bonus',
         'Get shards everywhere',
