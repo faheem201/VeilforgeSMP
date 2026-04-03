@@ -571,7 +571,7 @@ const Ranks = () => {
 const Updates = () => {
   const latestUpdates = [
     {
-     date: '3/30/2026 10:00 PM',
+     date: '3/30/2026 11:00 PM',
      title: 'VeilforgeSMP - Election Results 2026',
      type: 'Election',
      content: (
