@@ -30,7 +30,7 @@ import { motion, AnimatePresence } from 'motion/react';
 // --- Constants ---
 const SERVER_NAME = 'VeilforgeSMP';
 const SERVER_IP = 'play.veilforge.fun';
-const DISCORD_INVITE = 'https://discord.gg/mb8ukyqdyA';
+const DISCORD_INVITE = 'https://discord.gg/fQCyJ9jdaV';
 const SERVER_VERSIONS = 'Java 1.10.x – 1.21.11';
 const LOGO_URL = '/server-icon.png';
 const YOUTUBE_WATCH_URL = 'https://www.youtube.com/watch?v=LODV5L0Htis';
@@ -434,7 +434,7 @@ const Ranks = () => {
         '+1 Home',
         '+5 order slots',
         '+2 auction slots',
-        'Small shard bonus',
+        '500 Shard bonus',
         'Rank tag',
         '2 Common Crate Keys',
         'Priority support',
@@ -455,7 +455,7 @@ const Ranks = () => {
         '/anvil',
         '+10 order slots total',
         '+5 auction slots total',
-        'Medium shard bonus',
+        '1500 Shard bonus',
         'Get shards everywhere',
         'Priority support',
         'Rank tag',
@@ -478,12 +478,13 @@ const Ranks = () => {
         '/anvil',
         '+15 order slots total',
         '+10 auction slots total',
-        'Large shard bonus',
+        '2000 Shard Bonus',
         'Large enderchest',
         'Get shards everywhere',
         'Priority support',
         'Rank tag',
-        '1 Crimson Crate Key',
+        '1 Gold Crate Key',
+        '1 Amethyst Crate Key',
         'Fly in lobby',
       ],
     },
