@@ -465,7 +465,7 @@ const Ranks = () => {
     },
     {
       name: 'Inferno',
-      price: '250 BDT',
+      price: '300 BDT',
       badge: 'Most Premium',
       featured: true,
       icon: <Flame className="w-6 h-6 text-red-300" />,
@@ -476,6 +476,7 @@ const Ranks = () => {
       perks: [
         '+3 homes total',
         '/anvil',
+        'Nightvision'
         '+15 order slots total',
         '+10 auction slots total',
         '2000 Shard Bonus',
