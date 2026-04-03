@@ -442,7 +442,7 @@ const Ranks = () => {
     },
     {
       name: 'Flare',
-      price: '150 BDT',
+      price: '120 BDT',
       badge: 'Best Value',
       featured: true,
       icon: <Flame className="w-6 h-6 text-orange-300" />,
