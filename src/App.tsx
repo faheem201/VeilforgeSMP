@@ -13,6 +13,7 @@ import {
   Users,
   Zap,
   Flame,
+  Sun,
   Skull,
   CheckCircle2,
   Copy,
