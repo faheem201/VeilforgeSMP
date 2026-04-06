@@ -27,6 +27,7 @@ import {
   Shield,
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
+import { SpeedInsights } from '@vercel/speed-insights/react';
 
 // --- Constants ---
 const SERVER_NAME = 'VeilforgeSMP';
@@ -1027,6 +1028,7 @@ export default function App() {
         <CommunityCTA />
       </main>
       <Footer />
+      <SpeedInsights />
     </div>
   );
 }
